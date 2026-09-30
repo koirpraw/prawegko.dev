@@ -1,0 +1,48 @@
+---
+title: "MERN Jobs Board"
+description: "Full-stack CRUD job board with user auth, job posting, search, and application tracking."
+tags: ["MongoDB", "Express", "React", "Node.js", "JavaScript"]
+github: "https://github.com/koirpraw"
+layout: ../../layouts/ProjectLayout.astro
+live_url:
+image:
+featured: false
+order: 5
+---
+
+## Overview
+
+A full-stack job board application built with the MERN stack (MongoDB, Express, React, Node.js). Users can post jobs, search listings, apply for positions, and track their applications.
+
+### Features
+
+- **User Authentication** — Register, login, and profile management with JWT
+- **Job Posting** — Employers can create, edit, and manage job listings
+- **Advanced Search** — Filter by title, company, location, type, and salary range
+- **Application Tracking** — Candidates can apply and track application status
+- **Responsive UI** — Works on mobile and desktop
+
+### Technical Details
+
+- **Frontend:** React with Context-based state management
+- **Backend:** Express.js REST API
+- **Database:** MongoDB with Mongoose ODM
+- **Auth:** JWT with bcrypt password hashing
+- **File Upload:** Multer for resume uploads
+- **Validation:** express-validator
+
+### API Endpoints
+
+```
+GET    /api/jobs          — List jobs (with search/filter)
+GET    /api/jobs/:id      — Get job details
+POST   /api/jobs          — Create job (auth)
+PUT    /api/jobs/:id      — Update job (owner only)
+DELETE /api/jobs/:id      — Delete job (owner only)
+POST   /api/applications  — Apply to job (auth)
+GET    /api/applications  — My applications (auth)
+```
+
+### Status
+
+Complete. Deployed on a previous stack; planning a React Native companion app.

@@ -1,0 +1,46 @@
+---
+title: "ComfyUI GCP Storage Decouple"
+description: "Custom ComfyUI node that decouples storage from compute — read inputs from and write outputs to cloud storage directly."
+tags: ["Python", "ComfyUI", "GCP", "AWS", "Cloud Storage"]
+github: "https://github.com/koirpraw"
+layout: ../../layouts/ProjectLayout.astro
+live_url:
+image:
+featured: true
+order: 2
+---
+
+## Overview
+
+A custom ComfyUI node that separates storage from compute. Instead of requiring input/output files to live on the ComfyUI server's local filesystem, this node reads workflow inputs directly from cloud storage (GCP/AWS) and writes results back.
+
+### Why?
+
+ComfyUI workflows on cloud GPUs are often ephemeral — the instance boots, runs, and terminates. Local storage doesn't persist. This node solves that by:
+
+1. **Reading inputs** — models, LoRAs, reference images — from GCS or S3 buckets
+2. **Writing outputs** — generated images, videos, metadata — back to cloud storage
+3. **Running stateless** — the ComfyUI instance needs no persistent volume
+
+### Architecture
+
+```
+Cloud Storage (GCS/S3)
+    |
+    v
+[ComfyUI GCP Node] ---> ComfyUI Workflow ---> [ComfyUI GCP Node]
+    |                                                      |
+    v                                                      v
+Input cache (local)                                 Output upload
+```
+
+### Technical Details
+
+- **Type:** ComfyUI custom node (Python)
+- **Cloud SDKs:** google-cloud-storage, boto3
+- **Features:** Configurable bucket paths, auth via service account / IAM role, automatic retry
+- **Compatibility:** GCP (primary), AWS S3 (secondary)
+
+### Status
+
+Beta. Core functionality working; adding directory sync and metadata tagging.

@@ -1,0 +1,49 @@
+---
+title: "Kids Story Generator"
+description: "Agentic AI pipeline that generates illustrated children's stories from simple prompts using Python, ADK, and Gemini."
+tags: ["Python", "ADK", "Gemini", "AI Agents", "Generative AI"]
+github: "https://github.com/koirpraw"
+layout: ../../layouts/ProjectLayout.astro
+live_url:
+image:
+featured: true
+order: 1
+---
+
+## Overview
+
+The Kids Story Generator is an agentic AI pipeline that transforms simple prompts into fully-illustrated children's stories. It uses Google's Agent Development Kit (ADK) to orchestrate multiple specialized agents:
+
+- **Story Weaver** — Generates narrative arcs, characters, and plot
+- **Illustration Engine** — Creates scene descriptions and prompts for image generation
+- **Formatting Agent** — Composes the final output with proper layout and styling
+- **Review Agent** — Ensures age-appropriate content and narrative coherence
+
+### Architecture
+
+```
+User Prompt
+    |
+    v
+[Story Weaver] ---- generates narrative ----> [Review Agent]
+    |                                                |
+    v                                                v
+[Illustration Engine]                       Feedback Loop
+    |
+    v
+[Formatting Agent]
+    |
+    v
+Final Story (MDX + Images)
+```
+
+### Technical Details
+
+- **Framework:** Google ADK (Agent Development Kit)
+- **LLM:** Gemini 2.5 Pro (primary), Gemini 2.5 Flash (review agent)
+- **Image Gen:** Gemini-native image generation
+- **Format:** MDX output with embedded illustrations
+
+### Status
+
+Active development. Pipeline prototype is functional; working on UI layer and story preset system.
