@@ -1,0 +1,39 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Head from '../../components/Head.astro';
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <Head title="GoatReport — Praweg Koirala" description="Fitness tracking app built with Flutter." ogType="article" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <article class="content-container prose project-detail">
+        <header class="project-header">
+          <h1>GoatReport</h1>
+          <p class="project-subtitle">Fitness tracking app built with Flutter — log workouts, track progress, set goals, and view analytics.</p>
+          <div class="tags-row"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Mobile</span></div>
+          <div class="project-links"><a href="https://github.com/koirpraw" class="btn btn-outline" target="_blank" rel="noopener">Source &nearr;</a></div>
+        </header>
+        <h2>Overview</h2>
+        <p>GoatReport is a mobile fitness tracking application built with Flutter. It helps users log workouts, track progress over time, set goals, and view detailed analytics.</p>
+        <ul>
+          <li><strong>Workout Logging</strong> — Log sets, reps, weight, and exercise type</li>
+          <li><strong>Progress Tracking</strong> — Visual charts and trends over time</li>
+          <li><strong>Goal Setting</strong> — Set short and long-term fitness goals</li>
+          <li><strong>Analytics Dashboard</strong> — Volume, frequency, and personal records</li>
+        </ul>
+        <h3>Tech Stack</h3>
+        <p>Flutter / Dart, GetX, SQLite, fl_chart. Clean architecture with repository pattern.</p>
+        <h3>Status</h3>
+        <p>Beta. Core features working; adding social features and workout templates.</p>
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>
+<script>(function(){const h=document.documentElement;const s=localStorage.getItem('theme');if(s==='light'||s==='dark')h.setAttribute('data-theme',s);})();</script>
+<style scoped>.project-header{margin-bottom:var(--space-lg)}.project-header h1{font-size:var(--font-size-3xl);font-weight:800;letter-spacing:-0.02em}.project-subtitle{font-size:var(--font-size-lg);color:var(--color-text-muted);margin-top:var(--space-sm)}.tags-row{display:flex;flex-wrap:wrap;gap:var(--space-xs);margin-top:var(--space-sm)}.project-links{display:flex;gap:var(--space-md);margin-top:var(--space-lg)}</style>

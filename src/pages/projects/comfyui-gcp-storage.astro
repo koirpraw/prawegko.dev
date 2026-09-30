@@ -1,0 +1,72 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Head from '../../components/Head.astro';
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <Head title="ComfyUI GCP Storage Decouple — Praweg Koirala" description="Custom ComfyUI node that decouples storage from compute." ogType="article" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <article class="content-container prose project-detail">
+        <header class="project-header">
+          <h1>ComfyUI GCP Storage Decouple</h1>
+          <p class="project-subtitle">Custom ComfyUI node that separates storage from compute — read inputs from and write outputs to cloud storage directly.</p>
+          <div class="tags-row">
+            <span class="tag">Python</span>
+            <span class="tag">ComfyUI</span>
+            <span class="tag">GCP</span>
+            <span class="tag">Cloud Storage</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/koirpraw" class="btn btn-outline" target="_blank" rel="noopener">Source &nearr;</a>
+          </div>
+        </header>
+
+        <h2>Overview</h2>
+        <p>A custom ComfyUI node that separates storage from compute. Instead of requiring input/output files to live on the ComfyUI server's local filesystem, this node reads workflow inputs directly from cloud storage (GCP/AWS) and writes results back.</p>
+
+        <h3>Why?</h3>
+        <p>ComfyUI workflows on cloud GPUs are often ephemeral — the instance boots, runs, and terminates. Local storage doesn't persist. This node solves that by:</p>
+        <ol>
+          <li><strong>Reading inputs</strong> — models, LoRAs, reference images — from GCS or S3 buckets</li>
+          <li><strong>Writing outputs</strong> — generated images, videos, metadata — back to cloud storage</li>
+          <li><strong>Running stateless</strong> — the ComfyUI instance needs no persistent volume</li>
+        </ol>
+
+        <h3>Technical Details</h3>
+        <ul>
+          <li>Type: ComfyUI custom node (Python)</li>
+          <li>Cloud SDKs: google-cloud-storage, boto3</li>
+          <li>Features: Configurable bucket paths, auth via service account / IAM role, automatic retry</li>
+          <li>Compatibility: GCP (primary), AWS S3 (secondary)</li>
+        </ul>
+
+        <h3>Status</h3>
+        <p>Beta. Core functionality working; adding directory sync and metadata tagging.</p>
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+(function() {
+  const html = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  if (stored === 'light' || stored === 'dark') {
+    html.setAttribute('data-theme', stored);
+  }
+})();
+</script>
+
+<style>
+  .project-header { margin-bottom: var(--space-lg); }
+  .project-header h1 { font-size: var(--font-size-3xl); font-weight: 800; letter-spacing: -0.02em; }
+  .project-subtitle { font-size: var(--font-size-lg); color: var(--color-text-muted); margin-top: var(--space-sm); }
+  .tags-row { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-top: var(--space-sm); }
+  .project-links { display: flex; gap: var(--space-md); margin-top: var(--space-lg); }
+</style>

@@ -1,0 +1,36 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Head from '../../components/Head.astro';
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head><Head title="MERN Jobs Board — Praweg Koirala" description="Full-stack CRUD job board with user auth." ogType="article" /></head>
+  <body>
+    <Header /><main>
+      <article class="content-container prose project-detail">
+        <header class="project-header">
+          <h1>MERN Jobs Board</h1>
+          <p class="project-subtitle">Full-stack CRUD job board with user auth, job posting, search, and application tracking.</p>
+          <div class="tags-row"><span class="tag">MongoDB</span><span class="tag">Express</span><span class="tag">React</span><span class="tag">Node.js</span></div>
+          <div class="project-links"><a href="https://github.com/koirpraw" class="btn btn-outline" target="_blank" rel="noopener">Source &nearr;</a></div>
+        </header>
+        <h2>Overview</h2>
+        <p>Full-stack job board built with the MERN stack. Users can post jobs, search listings, apply for positions, and track their applications.</p>
+        <h3>Features</h3>
+        <ul>
+          <li>JWT-based authentication with profile management</li>
+          <li>Job CRUD with search and filtering</li>
+          <li>Application tracking system</li>
+          <li>Responsive UI</li>
+        </ul>
+        <h3>API Endpoints</h3>
+        <pre><code>GET    /api/jobs          — List jobs (search/filter)
+GET    /api/jobs/:id      — Get job details
+POST   /api/jobs          — Create job (auth)
+POST   /api/applications  — Apply to job (auth)</code></pre>
+      </article>
+    </main><Footer /></body>
+</html>
+<script>(function(){const h=document.documentElement;const s=localStorage.getItem('theme');if(s==='light'||s==='dark')h.setAttribute('data-theme',s);})();</script>
+<style scoped>.project-header{margin-bottom:var(--space-lg)}.project-header h1{font-size:var(--font-size-3xl);font-weight:800;letter-spacing:-0.02em}.project-subtitle{font-size:var(--font-size-lg);color:var(--color-text-muted);margin-top:var(--space-sm)}.tags-row{display:flex;flex-wrap:wrap;gap:var(--space-xs)}.project-links{display:flex;gap:var(--space-md);margin-top:var(--space-lg)}</style>
