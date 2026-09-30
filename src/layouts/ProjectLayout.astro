@@ -1,0 +1,49 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Head from '../components/Head.astro';
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <Head title={frontmatter.title || "Project"} description={frontmatter.description || ""} ogType="article" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <article class="content-container prose project-detail">
+        <header class="project-header">
+          <h1>{frontmatter.title}</h1>
+          <p class="project-subtitle">{frontmatter.description}</p>
+          <div class="tags-row">
+            {Array.from(frontmatter.tags || []).map(tag => <span class="tag">{tag}</span>)}
+          </div>
+          <div class="project-links">
+            {frontmatter.github ? <a href={frontmatter.github} class="btn btn-outline" target="_blank" rel="noopener">Source &nearr;</a> : ''}
+            {frontmatter.live_url ? <a href={frontmatter.live_url} class="btn btn-primary" target="_blank" rel="noopener">Live Demo &nearr;</a> : ''}
+          </div>
+        </header>
+        <slot />
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+(function() {
+  const html = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  if (stored === 'light' || stored === 'dark') {
+    html.setAttribute('data-theme', stored);
+  }
+})();
+</script>
+
+<style>
+  .project-header { margin-bottom: var(--space-lg); }
+  .project-header h1 { font-size: var(--font-size-3xl); font-weight: 800; letter-spacing: -0.02em; }
+  .project-subtitle { font-size: var(--font-size-lg); color: var(--color-text-muted); margin-top: var(--space-sm); }
+  .tags-row { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-top: var(--space-sm); }
+  .project-links { display: flex; gap: var(--space-md); margin-top: var(--space-lg); }
+</style>

@@ -1,0 +1,32 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="canonical" href={Astro.site + Astro.request.path} />
+<link rel="stylesheet" href="/src/styles/global.css" />
+<title>{Astro.props.title}</title>
+<meta name="description" content={Astro.props.description} />
+
+<meta property="og:title" content={Astro.props.title} />
+<meta property="og:description" content={Astro.props.description} />
+<meta property="og:type" content={Astro.props.ogType || "website"} />
+<meta property="og:url" content={Astro.site + Astro.request.path} />
+<meta property="og:site_name" content="Praweg Koirala" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={Astro.props.title} />
+<meta name="twitter:description" content={Astro.props.description} />
+
+<script type="application/ld+json" set:html={Astro.props.jsonLd || `{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Praweg Koirala",
+  "url": "https://prawegko.dev",
+  "jobTitle": "Software Engineer & Entrepreneur",
+  "sameAs": [
+    "https://github.com/koirpraw",
+    "https://www.linkedin.com/in/prawegko"
+  ]
+}`} />{Astro.props.extra}

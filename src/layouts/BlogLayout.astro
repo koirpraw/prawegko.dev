@@ -1,0 +1,49 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Head from '../components/Head.astro';
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <Head title={frontmatter.title || "Blog Post"} description={frontmatter.description || ""} ogType="article" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <article class="content-container prose">
+        <header class="post-header">
+          <h1>{frontmatter.title}</h1>
+          <div class="post-meta">
+            <time datetime={frontmatter.date ? frontmatter.date.toISOString().slice(0, 10) : ''}>
+              {frontmatter.date ? frontmatter.date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : ''}
+            </time>
+            <div class="tags-row">
+              {Array.from(frontmatter.tags || []).map(tag => <span class="tag">{tag}</span>)}
+            </div>
+          </div>
+        </header>
+        <slot />
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+(function() {
+  const html = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  if (stored === 'light' || stored === 'dark') {
+    html.setAttribute('data-theme', stored);
+  }
+})();
+</script>
+
+<style>
+  .post-header { margin-bottom: var(--space-lg); }
+  .post-header h1 { font-size: var(--font-size-3xl); font-weight: 800; letter-spacing: -0.02em; }
+  .post-meta { display: flex; align-items: center; gap: var(--space-sm); margin-top: var(--space-md); flex-wrap: wrap; }
+  .post-meta time { font-size: var(--font-size-sm); color: var(--color-text-muted); }
+  .tags-row { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+</style>

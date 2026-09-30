@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="canonical" href={Astro.site + Astro.request.path} />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType || "website"} />
+    <meta property="og:url" content={Astro.site + Astro.request.path} />
+    <meta property="og:site_name" content="Praweg Koirala" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <script type="application/ld+json" set:html={jsonLd || defaultJsonLd}></script>
+  </head>
+  <body>
+    <Header />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<script>
+(function() {
+  const html = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  if (stored === 'light' || stored === 'dark') {
+    html.setAttribute('data-theme', stored);
+  }
+})();
+</script>
+
+<script>
+const twEls = document.querySelectorAll('.typewriter');
+twEls.forEach(el => {
+  const words = JSON.parse(el.dataset.words || '[]');
+  if (!words.length) return;
+  let wordIdx = 0, charIdx = 0, deleting = false;
+  setInterval(() => {
+    const current = words[wordIdx];
+    if (!deleting) {
+      charIdx++;
+      el.textContent = current.slice(0, charIdx);
+      if (charIdx >= current.length) {
+        setTimeout(() => { deleting = true; }, 1500);
+      }
+    } else {
+      charIdx--;
+      el.textContent = current.slice(0, charIdx);
+      if (charIdx <= 0) {
+        deleting = false;
+        charIdx = 0;
+        wordIdx = (wordIdx + 1) % words.length;
+      }
+    }
+  }, 80);
+});
+</script>
+
+<script define:vars={{ defaultJsonLd: `{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Praweg Koirala",
+  "url": "https://prawegko.dev",
+  "jobTitle": "Software Engineer & Entrepreneur",
+  "sameAs": [
+    "https://github.com/koirpraw",
+    "https://www.linkedin.com/in/prawegko"
+  ],
+  "knowsAbout": ["Software Engineering", "Cloud Computing", "Artificial Intelligence", "Product Development"]
+}` }}></script>
