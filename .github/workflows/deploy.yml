@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write   # for OIDC with aws-actions/configure-aws-credentials
-  contents: read    # to checkout the repo
+  id-token: write
+  contents: read
 
 env:
   AWS_REGION: us-east-2
@@ -24,10 +24,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build
         run: npm run build
