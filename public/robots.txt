@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://prawegko.dev/sitemap-index.xml
