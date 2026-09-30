@@ -1,0 +1,132 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <title>Resume — Praweg Koirala</title>
+    <meta name="description" content="Professional resume of Praweg Koirala — Software Engineer & Entrepreneur." />
+  </head>
+  <body>
+    <Header />
+    <main>
+  <div class="resume-actions no-print">
+    <button class="btn btn-primary" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <header class="resume-header">
+    <h1>Praweg Koirala</h1>
+    <p class="resume-title">Software Engineer &amp; Entrepreneur</p>
+    <div class="resume-contact">
+      <span>Kathmandu, Nepal</span>
+      <span><a href="https://prawegko.dev">prawegko.dev</a></span>
+      <span><a href="https://github.com/koirpraw">github.com/koirpraw</a></span>
+      <span><a href="https://www.linkedin.com/in/prawegko">linkedin.com/in/prawegko</a></span>
+    </div>
+  </header>
+
+  <section class="resume-section">
+    <h2>Summary</h2>
+    <p>Software engineer and entrepreneur with a decade of experience building digital products. Cloud-certified (AWS), AI-focused, and hands-on with the full stack — from agentic pipelines to mobile apps. I turn product ideas into working systems.</p>
+  </section>
+
+  <section class="resume-section">
+    <h2>Experience</h2>
+
+    <div class="resume-entry">
+      <h3>Founder</h3>
+      <span class="resume-org">PkoLabs LLC</span>
+      <span class="resume-date">2024 — Present</span>
+      <ul>
+        <li>Building AI-powered products and cloud-native solutions</li>
+        <li>Developing agentic pipelines with ADK and Gemini</li>
+        <li>Creating ComfyUI custom nodes for cloud storage integration</li>
+        <li>Designing and deploying cloud infrastructure with Terraform and AWS</li>
+      </ul>
+    </div>
+
+    <div class="resume-entry">
+      <h3>Co-founder</h3>
+      <span class="resume-org">KDuo Production</span>
+      <span class="resume-date">2012 — Present</span>
+      <ul>
+        <li>Co-founded a production house delivering digital products to local and international clients</li>
+        <li>Leading technology strategy, architecture, and development</li>
+        <li>Built web platforms, mobile apps, and cloud infrastructure</li>
+      </ul>
+    </div>
+
+    <div class="resume-entry">
+      <h3>Senior Engineer</h3>
+      <span class="resume-org">ARUP Labs</span>
+      <span class="resume-date">2012 — 2020</span>
+      <ul>
+        <li>Led biomedical engineering software projects</li>
+        <li>Built healthcare technology solutions and laboratory information systems</li>
+        <li>Developed software for medical equipment integration</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="resume-section">
+    <h2>Certifications</h2>
+    <ul>
+      <li>AWS Solutions Architect — Associate (July 2026)</li>
+      <li>AWS Cloud Practitioner (July 2026)</li>
+      <li>HuggingFace AI Agents (2025)</li>
+    </ul>
+  </section>
+
+  <section class="resume-section">
+    <h2>Technical Skills</h2>
+    <div class="resume-skills">
+      <div><strong>Languages:</strong> Python, TypeScript, JavaScript, Dart, SQL</div>
+      <div><strong>Frameworks:</strong> NextJS, Astro, React, Flutter, Express, Node.js</div>
+      <div><strong>Cloud:</strong> AWS (S3, CloudFront, Route53, IAM, Terraform), GCP, Docker</div>
+      <div><strong>AI/ML:</strong> Agentic pipelines, ADK, Gemini API, ComfyUI, HuggingFace</div>
+      <div><strong>Tools:</strong> Git, GitHub Actions, Vercel, MongoDB, PostgreSQL</div>
+    </div>
+  </section>
+</main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+(function() {
+  const html = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  if (stored === 'light' || stored === 'dark') {
+    html.setAttribute('data-theme', stored);
+  }
+})();
+</script>
+
+<style>
+  .resume-container { max-width: var(--content-narrow); }
+  .resume-actions { margin-bottom: var(--space-lg); }
+  .resume-header { margin-bottom: var(--space-lg); border-bottom: 2px solid var(--color-accent); padding-bottom: var(--space-md); }
+  .resume-header h1 { font-size: var(--font-size-3xl); font-weight: 800; letter-spacing: -0.02em; }
+  .resume-title { font-size: var(--font-size-xl); color: var(--color-text-muted); margin-top: var(--space-xs); }
+  .resume-contact { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-sm); font-size: var(--font-size-sm); color: var(--color-text-muted); }
+  .resume-section { margin: var(--space-xl) 0; }
+  .resume-section h2 { font-size: var(--font-size-2xl); font-weight: 700; letter-spacing: -0.01em; border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-sm); margin-bottom: var(--space-md); }
+  .resume-entry { margin-bottom: var(--space-lg); }
+  .resume-entry h3 { font-size: var(--font-size-lg); font-weight: 600; }
+  .resume-org { font-weight: 600; color: var(--color-accent); }
+  .resume-date { display: block; font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--space-xs); }
+  .resume-entry ul { margin: var(--space-sm) 0; padding-left: var(--space-lg); }
+  .resume-entry li { margin-bottom: var(--space-xs); color: var(--color-text-muted); }
+  .resume-skills { display: grid; gap: var(--space-md); }
+  .resume-skills div { padding: var(--space-sm) 0; border-bottom: 1px solid var(--color-border); }
+  .resume-skills div:last-child { border-bottom: none; }
+  @media print {
+    .resume-actions { display: none; }
+    .resume-header h1 { font-size: 24pt; }
+  }
+</style>

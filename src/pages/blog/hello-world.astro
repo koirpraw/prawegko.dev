@@ -1,0 +1,79 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Head from '../../components/Head.astro';
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <Head title="Hello, World — New Site, New Stack" description="Rebuilding prawegko.dev with Astro, deployed on S3/CloudFront with OIDC CI/CD." ogType="article" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <article class="content-container prose">
+        <header class="post-header">
+          <h1>Hello, World — New Site, New Stack</h1>
+          <div class="post-meta">
+            <time datetime="2026-09-30">September 30, 2026</time>
+            <div class="tags-row">
+              <span class="tag">Meta</span>
+              <span class="tag">Astro</span>
+              <span class="tag">AWS</span>
+              <span class="tag">Cloud</span>
+            </div>
+          </div>
+        </header>
+
+        <p>Welcome to the new prawegko.dev. This site is built with <a href="https://astro.build">Astro</a>, a modern static site generator that produces fast, lightweight websites by default.</p>
+
+        <h2>Why Astro?</h2>
+        <p>After running on NextJS + Vercel for a while, I wanted to try a different deployment approach:</p>
+        <ul>
+          <li><strong>Static by default</strong> — Astro ships zero JavaScript unless you need it</li>
+          <li><strong>Content Collections</strong> — native MDX support with typed frontmatter</li>
+          <li><strong>Cloud-native deployment</strong> — S3 + CloudFront with OIDC-based GitHub Actions CI/CD</li>
+        </ul>
+
+        <h2>The Stack</h2>
+        <table>
+          <tr><th>Layer</th><th>Choice</th></tr>
+          <tr><td>Framework</td><td>Astro 7 + TypeScript</td></tr>
+          <tr><td>Styling</td><td>CSS custom properties</td></tr>
+          <tr><td>Hosting</td><td>AWS S3 (prawegko.dev bucket)</td></tr>
+          <tr><td>CDN</td><td>CloudFront</td></tr>
+          <tr><td>CI/CD</td><td>GitHub Actions with OIDC role deploy</td></tr>
+          <tr><td>Domain</td><td>prawegko.dev via Route53</td></tr>
+        </table>
+
+        <h2>The Workflow</h2>
+        <pre><code>git push origin main
+  -> npm ci
+  -> npm run build
+  -> aws s3 sync dist/ s3://prawegko.dev --delete
+  -> aws cloudfront create-invalidation ...</code></pre>
+        <p>All authenticated through GitHub's OIDC provider — no long-lived AWS keys needed.</p>
+        <p>More posts coming soon. Stay tuned.</p>
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+(function() {
+  const html = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  if (stored === 'light' || stored === 'dark') {
+    html.setAttribute('data-theme', stored);
+  }
+})();
+</script>
+
+<style>
+  .post-header { margin-bottom: var(--space-lg); }
+  .post-header h1 { font-size: var(--font-size-3xl); font-weight: 800; letter-spacing: -0.02em; }
+  .post-meta { display: flex; align-items: center; gap: var(--space-sm); margin-top: var(--space-md); flex-wrap: wrap; }
+  .post-meta time { font-size: var(--font-size-sm); color: var(--color-text-muted); }
+  .tags-row { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+</style>

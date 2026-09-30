@@ -1,0 +1,46 @@
+---
+title: "Hello, World — New Site, New Stack"
+date: 2026-09-30
+description: "Rebuilding prawegko.dev with Astro, deployed on S3/CloudFront with OIDC CI/CD."
+tags: ["Meta", "Astro", "AWS", "Cloud"]
+layout: ../../layouts/BlogLayout.astro
+image:
+---
+
+## Hello, World
+
+Welcome to the new prawegko.dev. This site is built with [Astro](https://astro.build), a modern static site generator that produces fast, lightweight websites by default.
+
+### Why Astro?
+
+After running on NextJS + Vercel for a while, I wanted to try a different deployment approach:
+
+- **Static by default** — Astro ships zero JavaScript unless you need it
+- **Content Collections** — native MDX support with typed frontmatter
+- **Cloud-native deployment** — S3 + CloudFront with OIDC-based GitHub Actions CI/CD
+
+### The Stack
+
+| Layer | Choice |
+|---|---|
+| Framework | Astro 7 + TypeScript |
+| Styling | Tailwind CSS (design tokens pending) |
+| Content | MDX via Content Collections |
+| Hosting | AWS S3 (prawegko.dev bucket) |
+| CDN | CloudFront (E27SNJMPZ4KHN5) |
+| CI/CD | GitHub Actions with OIDC role deploy |
+| Domain | prawegko.dev via Route53 |
+
+### The Workflow
+
+```bash
+git push origin main
+  -> npm ci
+  -> npm run build
+  -> aws s3 sync dist/ s3://prawegko.dev --delete
+  -> aws cloudfront create-invalidation --distribution-id E27SNJMPZ4KHN5 --paths "/*"
+```
+
+All authenticated through GitHub's OIDC provider — no long-lived AWS keys needed.
+
+More posts coming soon. Stay tuned.

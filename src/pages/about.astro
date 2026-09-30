@@ -1,0 +1,122 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Head from '../components/Head.astro';
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <Head title="About — Praweg Koirala" description="Career, skills, and certifications of Praweg Koirala." />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="content-container">
+        <h1 class="page-title">About Me</h1>
+
+        <div class="about-intro">
+          <p>I'm Praweg Koirala, a software engineer and entrepreneur based in Kathmandu, Nepal. I build AI-powered products on the cloud.</p>
+          <p>My work spans biomedical engineering, construction tech, and AI product development.</p>
+        </div>
+
+        <div class="timeline-section">
+          <h2 class="section-title">Career</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h3>PkoLabs LLC</h3>
+              <span class="timeline-date">2024 — Present</span>
+              <p>Founder. Building AI-powered products and cloud-native solutions.</p>
+            </div>
+            <div class="timeline-item">
+              <h3>KDuo Production — Co-founder</h3>
+              <span class="timeline-date">2012 — Present</span>
+              <p>Co-founded a production house in Nepal. Leading technology strategy.</p>
+            </div>
+            <div class="timeline-item">
+              <h3>ARUP Labs</h3>
+              <span class="timeline-date">2012 — 2020</span>
+              <p>Senior role at a biomedical engineering lab.</p>
+            </div>
+          </div>
+        </div>
+
+        <section class="skills-section">
+          <h2 class="section-title">Skills & Expertise</h2>
+          <div class="skills-grid">
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">TypeScript</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Dart / Flutter</span>
+            <span class="skill-pill">NextJS</span>
+            <span class="skill-pill">Astro</span>
+            <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">AWS Cloud</span>
+            <span class="skill-pill">Terraform</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">CI/CD</span>
+            <span class="skill-pill">AI / Agentic Pipelines</span>
+            <span class="skill-pill">ComfyUI</span>
+            <span class="skill-pill">Gemini / ADK</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">Git / GitHub Actions</span>
+            <span class="skill-pill">MongoDB</span>
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">Vercel / CloudFront</span>
+          </div>
+        </section>
+
+        <section class="certs-section">
+          <h2 class="section-title">Certifications</h2>
+          <div class="certs-grid">
+            <div class="cert-card">
+              <h3>AWS Solutions Architect — Associate</h3>
+              <span class="cert-date">July 2026</span>
+            </div>
+            <div class="cert-card">
+              <h3>AWS Cloud Practitioner</h3>
+              <span class="cert-date">July 2026</span>
+            </div>
+            <div class="cert-card">
+              <h3>HuggingFace AI Agents</h3>
+              <span class="cert-date">2025</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="building-section">
+          <h2 class="section-title">Currently Building</h2>
+          <ul class="building-list">
+            <li><strong>Kids Story Generator</strong> — Agentic AI pipeline using Python/ADK/Gemini</li>
+            <li><strong>ComfyUI GCP Storage Decouple</strong> — Custom ComfyUI node for cloud storage</li>
+            <li><strong>prawegko.dev</strong> — This Astro portfolio on S3/CloudFront</li>
+            <li><strong>Trading bots</strong> — Automated SPY/XSP scanning on Alpaca</li>
+          </ul>
+        </section>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+(function() {
+  const html = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  if (stored === 'light' || stored === 'dark') {
+    html.setAttribute('data-theme', stored);
+  }
+})();
+</script>
+
+<style>
+  .page-title { font-size: var(--font-size-3xl); font-weight: 800; letter-spacing: -0.02em; margin-bottom: var(--space-lg); }
+  .about-intro { max-width: var(--content-narrow); margin-bottom: var(--space-xl); font-size: var(--font-size-lg); color: var(--color-text-muted); line-height: 1.7; }
+  .timeline-section { margin: var(--space-xl) 0; }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--color-border); }
+  .timeline-item { margin-bottom: var(--space-lg); position: relative; }
+  .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 1.2rem; width: 12px; height: 12px; background: var(--color-accent); border-radius: 50%; transform: translateX(-50%); }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-lg); }
+  .cert-card { background: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-lg); }
+  .skills-section, .certs-section, .building-section { margin: var(--space-xl) 0; }
+</style>

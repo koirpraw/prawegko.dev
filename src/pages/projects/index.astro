@@ -1,0 +1,185 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <title>Projects — Praweg Koirala</title>
+    <meta name="description" content="A selection of projects by Praweg Koirala — AI pipelines, cloud tools, mobile apps, and full-stack platforms." />
+  </head>
+  <body>
+    <Header />
+    <main>
+  <h1 class="page-title">Projects</h1>
+  <p class="page-subtitle">Selected case studies — from agentic AI to full-stack apps.</p>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all" onclick="filterProjects('all')">All</button>
+    <button class="filter-btn" data-filter="Python" onclick="filterProjects('Python')">Python</button>
+    <button class="filter-btn" data-filter="Flutter" onclick="filterProjects('Flutter')">Flutter</button>
+    <button class="filter-btn" data-filter="TypeScript" onclick="filterProjects('TypeScript')">TypeScript</button>
+    <button class="filter-btn" data-filter="NextJS" onclick="filterProjects('NextJS')">NextJS</button>
+  </div>
+
+  <div class="projects-grid" id="projects-grid">
+    <article class="project-card" data-tags="Python,AI">
+      <div class="project-card-body">
+        <h2><a href="/projects/kids-story-generator">Kids Story Generator</a></h2>
+        <p class="project-desc">Agentic AI pipeline using Python/ADK/Gemini that generates illustrated children's stories from simple prompts. Multi-agent orchestration for narrative, illustration, and formatting.</p>
+        <div class="tags-row">
+          <span class="tag">Python</span>
+          <span class="tag">ADK</span>
+          <span class="tag">Gemini</span>
+          <span class="tag">AI Agents</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/koirpraw" class="btn btn-outline">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card" data-tags="Python,AI,Cloud">
+      <div class="project-card-body">
+        <h2><a href="/projects/comfyui-gcp-storage">ComfyUI GCP Storage Decouple</a></h2>
+        <p class="project-desc">Custom ComfyUI node that decouples storage from compute. Enables ComfyUI workflows to read inputs from and write outputs to GCP/AWS cloud storage directly.</p>
+        <div class="tags-row">
+          <span class="tag">Python</span>
+          <span class="tag">ComfyUI</span>
+          <span class="tag">GCP</span>
+          <span class="tag">Cloud Storage</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/koirpraw" class="btn btn-outline">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card" data-tags="Flutter">
+      <div class="project-card-body">
+        <h2><a href="/projects/goatreport">GoatReport</a></h2>
+        <p class="project-desc">Fitness tracking app built with Flutter. Users can log workouts, track progress over time, set goals, and view analytics. Clean, modern mobile UX.</p>
+        <div class="tags-row">
+          <span class="tag">Flutter</span>
+          <span class="tag">Dart</span>
+          <span class="tag">Mobile</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/koirpraw" class="btn btn-outline">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card" data-tags="NextJS,TypeScript">
+      <div class="project-card-body">
+        <h2><a href="/projects/lifukids-web">LifuKids Web</a></h2>
+        <p class="project-desc">Kids learning platform built with NextJS and TypeScript. Interactive educational content with gamification, progress tracking, and parent dashboards.</p>
+        <div class="tags-row">
+          <span class="tag">NextJS</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Web App</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/koirpraw" class="btn btn-outline">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card" data-tags="JavaScript,MongoDB,React">
+      <div class="project-card-body">
+        <h2><a href="/projects/mern-jobs-board">MERN Jobs Board</a></h2>
+        <p class="project-desc">Full-stack CRUD job board application built with MongoDB, Express, React, and Node.js. Features user authentication, job posting, search, and application tracking.</p>
+        <div class="tags-row">
+          <span class="tag">MongoDB</span>
+          <span class="tag">Express</span>
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/koirpraw" class="btn btn-outline">Source</a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+</main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+(function() {
+  const html = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  if (stored === 'light' || stored === 'dark') {
+    html.setAttribute('data-theme', stored);
+  }
+})();
+</script>
+
+<style>
+  .page-title { font-size: var(--font-size-3xl); font-weight: 800; letter-spacing: -0.02em; margin-bottom: var(--space-sm); }
+  .page-subtitle { font-size: var(--font-size-lg); color: var(--color-text-muted); margin-bottom: var(--space-lg); }
+  .filter-bar {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+  }
+  .filter-btn {
+    padding: var(--space-xs) var(--space-md);
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-muted);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    transition: all var(--transition-fast);
+  }
+  .filter-btn.active, .filter-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background: rgba(79, 143, 255, 0.1);
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: var(--space-lg);
+  }
+  .project-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+  }
+  .project-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(79, 143, 255, 0.06); }
+  .project-card-body { padding: var(--space-lg); }
+  .project-card-body h2 { font-size: var(--font-size-xl); margin-bottom: var(--space-sm); }
+  .project-card-body h2 a { color: var(--color-text); text-decoration: none; }
+  .project-card-body h2 a:hover { color: var(--color-accent); }
+  .project-desc { color: var(--color-text-muted); margin-bottom: var(--space-md); line-height: 1.6; }
+  .tags-row { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-bottom: var(--space-sm); }
+  .project-links { margin-top: var(--space-sm); }
+  .project-card[data-tags*="AI"] .tag:first-child { background: rgba(52, 211, 153, 0.15); color: var(--color-success); }
+</style>
+
+<script>
+function filterProjects(tag) {
+  const grid = document.getElementById('projects-grid');
+  const cards = grid.querySelectorAll('.project-card');
+  const buttons = document.querySelectorAll('.filter-btn');
+  buttons.forEach(b => b.classList.toggle('active', b.dataset.filter === tag));
+  cards.forEach(card => {
+    const tags = card.dataset.tags || '';
+    if (tag === 'all' || tags.includes(tag)) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
