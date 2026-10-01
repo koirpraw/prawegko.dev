@@ -31,35 +31,19 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Debug — check secret
+      - name: Decode OIDC token claims
         run: |
-          echo "Secret length: ${#AWS_ROLE_ARN_VALUE}"
-          echo "actor=${{ github.actor }}"
-          echo "repo=${{ github.repository }}"
-          echo "ref=${{ github.ref }}"
-          echo "event=${{ github.event_name }}"
-        env:
-          AWS_ROLE_ARN_VALUE: ${{ secrets.AWS_ROLE_ARN }}
+          ID_TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
+          echo "=== Token length: ${#ID_TOKEN} ==="
+          PAYLOAD=$(echo "$ID_TOKEN" | cut -d'.' -f2)
+          echo "$PAYLOAD" | base64 -d 2>/dev/null | jq . || echo "$PAYLOAD" | base64 -d 2>/dev/null || echo "RAW PAYLOAD: $PAYLOAD"
 
       - name: STS with hardcoded ARN
         run: |
           ID_TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
-          echo "Got token length: ${#ID_TOKEN}"
           aws sts assume-role-with-web-identity \
             --role-arn "arn:aws:iam::180294201976:role/prawegko-dev-github-deploy" \
             --role-session-name github-actions-deploy \
-            --web-identity-token "$ID_TOKEN" \
-            --region us-east-1 \
-            --duration-seconds 900
-
-      - name: STS with secret ARN
-        if: always()
-        run: |
-          ID_TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
-          echo "Got token length: ${#ID_TOKEN}"
-          aws sts assume-role-with-web-identity \
-            --role-arn "${{ secrets.AWS_ROLE_ARN }}" \
-            --role-session-name github-actions-deploy-2 \
             --web-identity-token "$ID_TOKEN" \
             --region us-east-1 \
             --duration-seconds 900
