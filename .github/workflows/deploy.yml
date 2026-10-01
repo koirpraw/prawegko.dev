@@ -1,1 +1,62 @@
-bmFtZTogRGVwbG95IHRvIFMzIC8gQ2xvdWRGcm9udAoKb246CiAgcHVzaDoKICAgIGJyYW5jaGVzOiBbbWFpbl0KICB3b3JrZmxvd19kaXNwYXRjaDoKCnBlcm1pc3Npb25zOgogIGlkLXRva2VuOiB3cml0ZQogIGNvbnRlbnRzOiByZWFkCgplbnY6CiAgQVdTX1JFR0lPTjogdXMtZWFzdC0yCiAgQ0xPVURGUk9OVF9ESVNUX0lEOiBFMjdTTkpNUFo0S0hONQoKam9iczoKICBkZXBsb3k6CiAgICBydW5zLW9uOiB1YnVudHUtbGF0ZXN0CiAgICBzdGVwczoKICAgICAgLSBuYW1lOiBDaGVja291dAogICAgICAgIHVzZXM6IGFjdGlvbnMvY2hlY2tvdXRAdjQKCiAgICAgIC0gbmFtZTogU2V0dXAgTm9kZS5qcwogICAgICAgIHVzZXM6IGFjdGlvbnMvc2V0dXAtbm9kZUB2NAogICAgICAgIHdpdGg6CiAgICAgICAgICBub2RlLXZlcnNpb246IDI0CgogICAgICAtIG5hbWU6IEluc3RhbGwgZGVwZW5kZW5jaWVzCiAgICAgICAgcnVuOiBucG0gaW5zdGFsbAoKICAgICAgLSBuYW1lOiBCdWlsZAogICAgICAgIHJ1bjogbnBtIHJ1biBidWlsZAoKICAgICAgLSBuYW1lOiBEZWJ1ZyDigJQgT0lEQyB0b2tlbiBjbGFpbXMKICAgICAgICBydW46IHwKICAgICAgICAgIGVjaG8gImFjdG9yPSR7eyBnaXRodWIuYWN0b3IgfX0iCiAgICAgICAgICBlY2hvICJyZXBvPSR7eyBnaXRodWIucmVwb3NpdG9yeSB9fSIKICAgICAgICAgIGVjaG8gInJlZj0ke3sgZ2l0aHViLnJlZiB9fSIKICAgICAgICAgIGVjaG8gImV2ZW50PSR7eyBnaXRodWIuZXZlbnRfbmFtZSB9fSIKCiAgICAgIC0gbmFtZTogR2V0IE9JREMgdG9rZW4gYW5kIGFzc3VtZSByb2xlIChyYXcgU1RTKQogICAgICAgIHJ1bjogfAogICAgICAgICAgSURfVE9LRU49JChjdXJsIC1zIC1IICJBdXRob3JpemF0aW9uOiBiZWFyZXIgJEFDVElPTlNfSURfVE9LRU5fUkVRVUVTVF9UT0tFTiIgIiRBQ1RJT05TX0lEX1RPS0VOX1JFUVVFU1RfVVJMJmF1ZGllbmNlPXN0cy5hbWF6b25hd3MuY29tIiB8IGpxIC1yICcudmFsdWUnKQogICAgICAgICAgZWNobyAiR290IHRva2VuIGxlbmd0aDogJHsjSURfVE9LRU59IgogICAgICAgICAgQ1JFRFM9JChhd3Mgc3RzIGFzc3VtZS1yb2xlLXdpdGgtd2ViLWlkZW50aXR5IFwKICAgICAgICAgICAgLS1yb2xlLWFybiAiJHt7IHNlY3JldHMuQVdTX1JPTEVfQVJOIH19IiBcCiAgICAgICAgICAgIC0tcm9sZS1zZXNzaW9uLW5hbWUgZ2l0aHViLWFjdGlvbnMtZGVwbG95IFwKICAgICAgICAgICAgLS13ZWItaWRlbnRpdHktdG9rZW4gIiRJRF9UT0tFTiIgXAogICAgICAgICAgICAtLXJlZ2lvbiB1cy1lYXN0LTEgXAogICAgICAgICAgICAtLWR1cmF0aW9uLXNlY29uZHMgOTAwIDI+JjEpCiAgICAgICAgICBlY2hvICJTVFNfUkVTUE9OU0U8PEVPRiIKICAgICAgICAgIGVjaG8gIiRDUkVEUyIKICAgICAgICAgIGVjaG8gIkVPRiIKCiAgICAgIC0gbmFtZTogU3luYyB0byBTMwogICAgICAgIHJ1bjogYXdzIHMzIHN5bmMgZGlzdC8gczM6Ly9wcmF3ZWdrby5kZXYgLS1kZWxldGUKCiAgICAgIC0gbmFtZTogSW52YWxpZGF0ZSBDbG91ZEZyb250IGNhY2hlCiAgICAgICAgcnVuOiB8CiAgICAgICAgICBhd3MgY2xvdWRmcm9udCBjcmVhdGUtaW52YWxpZGF0aW9uIFwKICAgICAgICAgICAgLS1kaXN0cmlidXRpb24taWQgJHt7IGVudi5DTE9VREZST05UX0RJU1RfSUQgfX0gXAogICAgICAgICAgICAtLXBhdGhzICIvKiI=
+name: Deploy to S3 / CloudFront
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-2
+  CLOUDFRONT_DIST_ID: E27SNJMPZ4KHN5
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Debug — OIDC token claims
+        run: |
+          echo "actor=${{ github.actor }}"
+          echo "repo=${{ github.repository }}"
+          echo "ref=${{ github.ref }}"
+          echo "event=${{ github.event_name }}"
+
+      - name: Get OIDC token and assume role (raw STS)
+        run: |
+          ID_TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
+          echo "Got token length: ${#ID_TOKEN}"
+          CREDS=$(aws sts assume-role-with-web-identity \
+            --role-arn "${{ secrets.AWS_ROLE_ARN }}" \
+            --role-session-name github-actions-deploy \
+            --web-identity-token "$ID_TOKEN" \
+            --region us-east-1 \
+            --duration-seconds 900 2>&1)
+          echo "STS_RESPONSE<<EOF"
+          echo "$CREDS"
+          echo "EOF"
+
+      - name: Sync to S3
+        run: aws s3 sync dist/ s3://prawegko.dev --delete
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ env.CLOUDFRONT_DIST_ID }} \
+            --paths "/*"
