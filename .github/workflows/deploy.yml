@@ -42,15 +42,12 @@ jobs:
         run: |
           ID_TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
           echo "Got token length: ${#ID_TOKEN}"
-          CREDS=$(aws sts assume-role-with-web-identity \
+          aws sts assume-role-with-web-identity \
             --role-arn "${{ secrets.AWS_ROLE_ARN }}" \
             --role-session-name github-actions-deploy \
             --web-identity-token "$ID_TOKEN" \
             --region us-east-1 \
-            --duration-seconds 900 2>&1)
-          echo "STS_RESPONSE<<EOF"
-          echo "$CREDS"
-          echo "EOF"
+            --duration-seconds 900
 
       - name: Sync to S3
         run: aws s3 sync dist/ s3://prawegko.dev --delete
