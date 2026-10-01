@@ -31,29 +31,35 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Debug — OIDC token claims
+      - name: Debug — check secret
         run: |
+          echo "Secret length: ${#AWS_ROLE_ARN_VALUE}"
           echo "actor=${{ github.actor }}"
           echo "repo=${{ github.repository }}"
           echo "ref=${{ github.ref }}"
           echo "event=${{ github.event_name }}"
+        env:
+          AWS_ROLE_ARN_VALUE: ${{ secrets.AWS_ROLE_ARN }}
 
-      - name: Get OIDC token and assume role (raw STS)
+      - name: STS with hardcoded ARN
         run: |
           ID_TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
           echo "Got token length: ${#ID_TOKEN}"
           aws sts assume-role-with-web-identity \
-            --role-arn "${{ secrets.AWS_ROLE_ARN }}" \
+            --role-arn "arn:aws:iam::180294201976:role/prawegko-dev-github-deploy" \
             --role-session-name github-actions-deploy \
             --web-identity-token "$ID_TOKEN" \
             --region us-east-1 \
             --duration-seconds 900
 
-      - name: Sync to S3
-        run: aws s3 sync dist/ s3://prawegko.dev --delete
-
-      - name: Invalidate CloudFront cache
+      - name: STS with secret ARN
+        if: always()
         run: |
-          aws cloudfront create-invalidation \
-            --distribution-id ${{ env.CLOUDFRONT_DIST_ID }} \
-            --paths "/*"
+          ID_TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
+          echo "Got token length: ${#ID_TOKEN}"
+          aws sts assume-role-with-web-identity \
+            --role-arn "${{ secrets.AWS_ROLE_ARN }}" \
+            --role-session-name github-actions-deploy-2 \
+            --web-identity-token "$ID_TOKEN" \
+            --region us-east-1 \
+            --duration-seconds 900
