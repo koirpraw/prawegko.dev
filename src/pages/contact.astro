@@ -1,106 +1,48 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<!doctype html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Contact — Praweg Koirala</title>
-    <meta name="description" content="Get in touch with Praweg Koirala." />
-  </head>
-  <body>
-    <Header />
-    <main>
-  <h1 class="page-title">Contact</h1>
-  <p class="page-subtitle">Have a question, project idea, or just want to say hi? Drop me a message.</p>
 
-  <div class="contact-wrapper">
-    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+<BaseLayout title="Contact — Praweg Koirala" description="Get in touch with Praweg Koirala.">
+  <h1 class="mb-2 text-5xl font-extrabold tracking-[-0.02em]">Contact</h1>
+  <p class="mb-8 text-lg text-muted">Have a question, project idea, or just want to say hi? Drop me a message.</p>
+
+  <div class="grid items-start gap-16 md:grid-cols-[1fr_300px]">
+    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="max-w-[42rem]">
       <!-- Web3Forms access key — replace with your actual key -->
       <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
       <input type="hidden" name="subject" value="New message from prawegko.dev" />
       <!-- Honeypot -->
-      <input type="text" name="honeypot" style="display:none" />
+      <input type="text" name="honeypot" class="hidden" />
 
-      <div class="form-group">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" id="name" name="name" class="form-input" required minlength="2" />
+      <div class="mb-8">
+        <label for="name" class="mb-2 block font-semibold">Name</label>
+        <input type="text" id="name" name="name" class="w-full rounded-sm border border-line bg-card px-4 py-2 font-sans text-base text-fg transition-colors focus:border-accent focus:outline-none" required minlength="2" />
       </div>
 
-      <div class="form-group">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" name="email" class="form-input" required />
+      <div class="mb-8">
+        <label for="email" class="mb-2 block font-semibold">Email</label>
+        <input type="email" id="email" name="email" class="w-full rounded-sm border border-line bg-card px-4 py-2 font-sans text-base text-fg transition-colors focus:border-accent focus:outline-none" required />
       </div>
 
-      <div class="form-group">
-        <label for="message" class="form-label">Message</label>
-        <textarea id="message" name="message" class="form-textarea" rows="5" required minlength="10"></textarea>
+      <div class="mb-8">
+        <label for="message" class="mb-2 block font-semibold">Message</label>
+        <textarea id="message" name="message" class="min-h-30 w-full resize-y rounded-sm border border-line bg-card px-4 py-2 font-sans text-base text-fg transition-colors focus:border-accent focus:outline-none" rows="5" required minlength="10"></textarea>
       </div>
 
-      <button type="submit" class="btn btn-primary">Send Message</button>
-      <p id="form-status" class="form-status"></p>
+      <button type="submit" class="inline-flex cursor-pointer items-center gap-2 rounded-sm border border-transparent bg-accent px-8 py-2 text-base font-semibold text-white transition-colors hover:bg-accent-hover">Send Message</button>
+      <p id="form-status" class="mt-4 text-sm"></p>
     </form>
 
-    <div class="contact-info">
-      <h2>Other ways to reach me</h2>
-      <ul>
-        <li><strong>GitHub:</strong> <a href="https://github.com/koirpraw">@koirpraw</a></li>
-        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/prawegko">/in/prawegko</a></li>
-        <li><strong>Email:</strong> <a href="mailto:prawegko@gmail.com">prawegko@gmail.com</a></li>
+    <div>
+      <h2 class="mb-4 text-lg font-bold">Other ways to reach me</h2>
+      <ul class="list-none">
+        <li class="mb-2"><strong>GitHub:</strong> <a href="https://github.com/koirpraw" class="text-accent transition-colors hover:text-accent-hover hover:underline">@koirpraw</a></li>
+        <li class="mb-2"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/prawegko" class="text-accent transition-colors hover:text-accent-hover hover:underline">/in/prawegko</a></li>
+        <li class="mb-2"><strong>Email:</strong> <a href="mailto:prawegko@gmail.com" class="text-accent transition-colors hover:text-accent-hover hover:underline">prawegko@gmail.com</a></li>
       </ul>
     </div>
   </div>
-</main>
-    <Footer />
-  </body>
-</html>
-
-<script>
-(function() {
-  const html = document.documentElement;
-  const stored = localStorage.getItem('theme');
-  if (stored === 'light' || stored === 'dark') {
-    html.setAttribute('data-theme', stored);
-  }
-})();
-</script>
-
-<style>
-  .page-title { font-size: var(--font-size-3xl); font-weight: 800; letter-spacing: -0.02em; margin-bottom: var(--space-sm); }
-  .page-subtitle { font-size: var(--font-size-lg); color: var(--color-text-muted); margin-bottom: var(--space-lg); }
-  .contact-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: var(--space-xl);
-    align-items: start;
-  }
-  .contact-form { max-width: var(--content-narrow); }
-  .form-group { margin-bottom: var(--space-lg); }
-  .form-label { display: block; margin-bottom: var(--space-sm); font-weight: 600; }
-  .form-input, .form-textarea {
-    width: 100%;
-    padding: var(--space-sm) var(--space-md);
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    color: var(--color-text);
-    font-family: var(--font-sans);
-    font-size: var(--font-size-base);
-    transition: border-color var(--transition-fast);
-  }
-  .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--color-accent); }
-  .form-textarea { min-height: 120px; resize: vertical; }
-  .form-status { margin-top: var(--space-md); font-size: var(--font-size-sm); }
-  .contact-info h2 { font-size: var(--font-size-lg); margin-bottom: var(--space-md); }
-  .contact-info ul { list-style: none; padding: 0; }
-  .contact-info li { margin-bottom: var(--space-sm); }
-  .contact-info a { color: var(--color-accent); }
-  @media (max-width: 768px) { .contact-wrapper { grid-template-columns: 1fr; } }
-</style>
+</BaseLayout>
 
 <script>
 document.getElementById('contact-form').addEventListener('submit', async function(e) {

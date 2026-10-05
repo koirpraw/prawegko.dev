@@ -1,64 +1,15 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<!doctype html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>404 — Page Not Found</title>
-    <meta name="description" content="The page you're looking for doesn't exist." />
-  </head>
-  <body>
-    <Header />
-    <main>
-  <div class="error-content">
-    <h1 class="error-code">404</h1>
-    <p class="error-message">The page you're looking for doesn't exist.</p>
-    <p class="error-hint">It might have moved, been renamed, or never existed in the first place.</p>
-    <a href="/" class="btn btn-primary">&larr; Back to Home</a>
+
+<BaseLayout
+  title="404 — Page Not Found"
+  description="The page you're looking for doesn't exist."
+>
+  <div class="flex min-h-[60vh] flex-col items-center justify-center text-center">
+    <h1 class="mb-4 text-[clamp(5rem,12vw,10rem)] font-extrabold leading-none tracking-[-0.05em] text-accent">404</h1>
+    <p class="mb-4 text-[2rem]">The page you're looking for doesn't exist.</p>
+    <p class="mb-16 text-muted">It might have moved, been renamed, or never existed in the first place.</p>
+    <a href="/" class="inline-flex cursor-pointer items-center gap-2 rounded-sm border border-transparent bg-accent px-8 py-2 text-base font-semibold text-white transition-colors hover:bg-accent-hover">&larr; Back to Home</a>
   </div>
-</main>
-    <Footer />
-  </body>
-</html>
-
-<script>
-(function() {
-  const html = document.documentElement;
-  const stored = localStorage.getItem('theme');
-  if (stored === 'light' || stored === 'dark') {
-    html.setAttribute('data-theme', stored);
-  }
-})();
-</script>
-
-<style>
-  .error-page {
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  .error-content { max-width: var(--content-narrow); }
-  .error-code {
-    font-size: clamp(5rem, 12vw, 10rem);
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    color: var(--color-accent);
-    line-height: 1;
-    margin-bottom: var(--space-md);
-  }
-  .error-message {
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--space-md);
-  }
-  .error-hint {
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-xl);
-  }
-</style>
+</BaseLayout>

@@ -1,72 +1,32 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<!doctype html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Now — Praweg Koirala</title>
-    <meta name="description" content="What Praweg Koirala is focused on right now." />
-  </head>
-  <body>
-    <Header />
-    <main>
-  <h1 class="page-title">Now</h1>
-  <p class="page-subtitle">What I'm focused on right now. <a href="https://nownownow.com">Inspired by /now pages</a>.</p>
 
-  <div class="now-list">
-    <div class="now-item">
-      <h2>Building agentic AI pipelines</h2>
-      <p>Working on a Kids Story Generator using Python + ADK + Gemini. Multi-agent orchestration to generate narrative, illustrations, and formatted output from a single prompt.</p>
+<BaseLayout title="Now — Praweg Koirala" description="What Praweg Koirala is focused on right now.">
+  <h1 class="mb-2 text-5xl font-extrabold tracking-[-0.02em]">Now</h1>
+  <p class="mb-8 text-lg text-muted">What I'm focused on right now. <a href="https://nownownow.com" class="text-accent transition-colors hover:text-accent-hover hover:underline">Inspired by /now pages</a>.</p>
+
+  <div class="grid gap-8">
+    <div class="rounded-md border border-line bg-card p-8">
+      <h2 class="mb-4 text-2xl font-bold">Building agentic AI pipelines</h2>
+      <p class="text-muted">Working on a Kids Story Generator using Python + ADK + Gemini. Multi-agent orchestration to generate narrative, illustrations, and formatted output from a single prompt.</p>
     </div>
 
-    <div class="now-item">
-      <h2>Cloud infrastructure at prawegko.dev</h2>
-      <p>Migrating my personal site to Astro, deploying via S3 + CloudFront with GitHub Actions OIDC. Learning the AWS-native deployment workflow.</p>
+    <div class="rounded-md border border-line bg-card p-8">
+      <h2 class="mb-4 text-2xl font-bold">Cloud infrastructure at prawegko.dev</h2>
+      <p class="text-muted">Migrating my personal site to Astro, deploying via S3 + CloudFront with GitHub Actions OIDC. Learning the AWS-native deployment workflow.</p>
     </div>
 
-    <div class="now-item">
-      <h2>Automated trading scans</h2>
-      <p>Running daily SPY/XSP bull put spread scans on Alpaca. Building toward semi-automated then fully automated execution.</p>
+    <div class="rounded-md border border-line bg-card p-8">
+      <h2 class="mb-4 text-2xl font-bold">Automated trading scans</h2>
+      <p class="text-muted">Running daily SPY/XSP bull put spread scans on Alpaca. Building toward semi-automated then fully automated execution.</p>
     </div>
 
-    <div class="now-item">
-      <h2>Being a new dad</h2>
-      <p>Learning the ropes of fatherhood alongside building products. Currently operating on less sleep and more coffee.</p>
+    <div class="rounded-md border border-line bg-card p-8">
+      <h2 class="mb-4 text-2xl font-bold">Being a new dad</h2>
+      <p class="text-muted">Learning the ropes of fatherhood alongside building products. Currently operating on less sleep and more coffee.</p>
     </div>
   </div>
 
-  <p class="now-updated"><em>Updated September 2026</em></p>
-</main>
-    <Footer />
-  </body>
-</html>
-
-<script>
-(function() {
-  const html = document.documentElement;
-  const stored = localStorage.getItem('theme');
-  if (stored === 'light' || stored === 'dark') {
-    html.setAttribute('data-theme', stored);
-  }
-})();
-</script>
-
-<style>
-  .page-title { font-size: var(--font-size-3xl); font-weight: 800; letter-spacing: -0.02em; margin-bottom: var(--space-sm); }
-  .page-subtitle { font-size: var(--font-size-lg); color: var(--color-text-muted); margin-bottom: var(--space-lg); }
-  .now-list { display: grid; gap: var(--space-lg); }
-  .now-item {
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: var(--space-lg);
-  }
-  .now-item h2 { font-size: var(--font-size-xl); margin-bottom: var(--space-sm); }
-  .now-item p { color: var(--color-text-muted); line-height: 1.6; }
-  .now-updated { margin-top: var(--space-xl); color: var(--color-text-muted); font-size: var(--font-size-sm); }
-</style>
+  <p class="mt-16 text-sm text-muted"><em>Updated September 2026</em></p>
+</BaseLayout>

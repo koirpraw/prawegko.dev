@@ -1,74 +1,26 @@
 ---
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import '../../styles/global.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
-<!doctype html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Blog — Praweg Koirala</title>
-    <meta name="description" content="Thoughts on software engineering, AI, cloud computing, and building products." />
-  </head>
-  <body>
-    <Header />
-    <main>
-  <h1 class="page-title">Blog</h1>
-  <p class="page-subtitle">Thoughts on building, coding, and the cloud.</p>
 
-  <div class="blog-list">
-    <article class="blog-card">
-      <div class="blog-card-body">
-        <time datetime="2026-09-01">September 1, 2026</time>
-        <h2><a href="/blog/hello-world">Hello, World — New Site, New Stack</a></h2>
-        <p>Rebuilding prawegko.dev with Astro, deployed on S3/CloudFront with OIDC CI/CD. Here's the stack and why I chose it.</p>
-        <div class="tags-row">
-          <span class="tag">Meta</span>
-          <span class="tag">Astro</span>
-          <span class="tag">AWS</span>
-        </div>
+<BaseLayout
+  title="Blog — Praweg Koirala"
+  description="Thoughts on software engineering, AI, cloud computing, and building products."
+>
+  <h1 class="mb-2 text-5xl font-extrabold tracking-[-0.02em]">Blog</h1>
+  <p class="mb-8 text-lg text-muted">Thoughts on building, coding, and the cloud.</p>
+
+  <div class="grid grid-cols-1 gap-8">
+    <article class="rounded-md border border-line bg-card p-8 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/10">
+      <time class="mb-2 block text-sm text-muted" datetime="2026-09-01">September 1, 2026</time>
+      <h2 class="mb-2 text-2xl font-bold">
+        <a href="/blog/hello-world" class="text-fg no-underline transition-colors hover:text-accent">Hello, World — New Site, New Stack</a>
+      </h2>
+      <p class="mb-4 text-muted">Rebuilding prawegko.dev with Astro, deployed on S3/CloudFront with OIDC CI/CD. Here's the stack and why I chose it.</p>
+      <div class="flex flex-wrap gap-1">
+        <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">Meta</span>
+        <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">Astro</span>
+        <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">AWS</span>
       </div>
     </article>
   </div>
-
-</main>
-    <Footer />
-  </body>
-</html>
-
-<script>
-(function() {
-  const html = document.documentElement;
-  const stored = localStorage.getItem('theme');
-  if (stored === 'light' || stored === 'dark') {
-    html.setAttribute('data-theme', stored);
-  }
-})();
-</script>
-
-<style>
-  .page-title { font-size: var(--font-size-3xl); font-weight: 800; letter-spacing: -0.02em; margin-bottom: var(--space-sm); }
-  .page-subtitle { font-size: var(--font-size-lg); color: var(--color-text-muted); margin-bottom: var(--space-lg); }
-  .blog-list { display: grid; gap: var(--space-lg); }
-  .blog-card {
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    transition: all var(--transition-base);
-  }
-  .blog-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(79, 143, 255, 0.06); }
-  .blog-card-body { padding: var(--space-lg); }
-  .blog-card-body time {
-    display: block;
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-sm);
-  }
-  .blog-card-body h2 { font-size: var(--font-size-xl); margin-bottom: var(--space-sm); }
-  .blog-card-body h2 a { color: var(--color-text); text-decoration: none; }
-  .blog-card-body h2 a:hover { color: var(--color-accent); }
-  .blog-card-body p { color: var(--color-text-muted); margin-bottom: var(--space-md); }
-  .tags-row { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
-</style>
+</BaseLayout>
