@@ -1,151 +1,8 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Head from '../components/Head.astro';
----
-<!doctype html>
-<html lang="en" data-theme="dark">
-  <head>
-    <Head title="Praweg Koirala — Software Engineer & Entrepreneur" description="Entrepreneur who codes — building AI-powered products on the cloud. Explore projects, blog, and more." ogType="website" />
-  </head>
-  <body>
-    <Header />
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-    <main>
-      <section class="hero content-container">
-        <div class="hero-content">
-          <p class="hero-greeting">Hi, I'm</p>
-          <h1 class="hero-name">Praweg Koirala</h1>
-          <p class="hero-tagline">Entrepreneur who codes — building AI-powered products on the cloud</p>
-          <p class="hero-rotator">
-            <span class="typewriter" data-words='["Software Engineer", "Entrepreneur", "Tinkerer", "New Dad"]'></span>
-            <span class="typewriter-cursor"></span>
-          </p>
-          <div class="hero-actions">
-            <a href="/projects" class="btn btn-primary">View Projects</a>
-            <a href="/about" class="btn btn-outline">About Me</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="stats-section content-container">
-        <div class="stats-grid">
-          <div class="stat-card">
-            <span class="stat-num">10+</span>
-            <span class="stat-desc">Years Building</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num">5+</span>
-            <span class="stat-desc">Projects Shipped</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num">3</span>
-            <span class="stat-desc">Cloud Certs</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num">2</span>
-            <span class="stat-desc">AI Agents Certs</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="featured-section content-container">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="featured-grid">
-          <article class="preview-card">
-            <div class="preview-card-body">
-              <h3><a href="/projects/kids-story-generator">Kids Story Generator</a></h3>
-              <p>Agentic AI pipeline using Python/ADK/Gemini that generates illustrated children's stories.</p>
-              <div class="tags-row">
-                <span class="tag">Python</span>
-                <span class="tag">ADK</span>
-                <span class="tag">Gemini</span>
-                <span class="tag">AI Agents</span>
-              </div>
-            </div>
-          </article>
-          <article class="preview-card">
-            <div class="preview-card-body">
-              <h3><a href="/projects/comfyui-gcp-storage">ComfyUI GCP Storage Decouple</a></h3>
-              <p>Custom ComfyUI node that decouples storage from compute — read/write cloud storage directly.</p>
-              <div class="tags-row">
-                <span class="tag">Python</span>
-                <span class="tag">ComfyUI</span>
-                <span class="tag">GCP</span>
-                <span class="tag">Cloud Storage</span>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="section-action">
-          <a href="/projects" class="btn btn-outline">All Projects &rarr;</a>
-        </div>
-      </section>
-
-      <section class="latest-blog content-container">
-        <h2 class="section-title">Latest Blog</h2>
-        <div class="blog-preview-list">
-          <article class="preview-card">
-            <div class="preview-card-body">
-              <time datetime="2026-09-30">September 30, 2026</time>
-              <h3><a href="/blog/hello-world">Hello, World — New Site, New Stack</a></h3>
-              <p>Rebuilding prawegko.dev with Astro, deployed on S3/CloudFront with OIDC CI/CD.</p>
-              <div class="tags-row">
-                <span class="tag">Meta</span>
-                <span class="tag">Astro</span>
-                <span class="tag">AWS</span>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="section-action">
-          <a href="/blog" class="btn btn-outline">All Posts &rarr;</a>
-        </div>
-      </section>
-    </main>
-
-    <Footer />
-  </body>
-</html>
-
-<script>
-(function() {
-  const html = document.documentElement;
-  const stored = localStorage.getItem('theme');
-  if (stored === 'light' || stored === 'dark') {
-    html.setAttribute('data-theme', stored);
-  }
-})();
-</script>
-
-<script>
-const twEls = document.querySelectorAll('.typewriter');
-twEls.forEach(el => {
-  const words = JSON.parse(el.dataset.words || '[]');
-  if (!words.length) return;
-  let wordIdx = 0, charIdx = 0, deleting = false;
-  setInterval(() => {
-    const current = words[wordIdx];
-    if (!deleting) {
-      charIdx++;
-      el.textContent = current.slice(0, charIdx);
-      if (charIdx >= current.length) {
-        setTimeout(() => { deleting = true; }, 1500);
-      }
-    } else {
-      charIdx--;
-      el.textContent = current.slice(0, charIdx);
-      if (charIdx <= 0) {
-        deleting = false;
-        charIdx = 0;
-        wordIdx = (wordIdx + 1) % words.length;
-      }
-    }
-  }, 80);
-});
-</script>
-
-<script define:vars={{ defaultJsonLd: `{
+// Override BaseLayout's default Person schema — this page adds knowsAbout.
+const jsonLd = `{
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Praweg Koirala",
@@ -156,4 +13,101 @@ twEls.forEach(el => {
     "https://www.linkedin.com/in/prawegko"
   ],
   "knowsAbout": ["Software Engineering", "Cloud Computing", "Artificial Intelligence", "Product Development"]
-}` }}></script>
+}`;
+---
+
+<BaseLayout
+  title="Praweg Koirala — Software Engineer & Entrepreneur"
+  description="Entrepreneur who codes — building AI-powered products on the cloud. Explore projects, blog, and more."
+  ogType="website"
+  jsonLd={jsonLd}
+>
+  <section class="py-16 text-center md:py-24">
+    <p class="mb-4 text-lg text-muted">Hi, I'm</p>
+    <h1 class="mb-4 text-5xl font-extrabold tracking-[-0.02em]">Praweg Koirala</h1>
+    <p class="mb-6 text-lg text-muted">Entrepreneur who codes — building AI-powered products on the cloud</p>
+    <p class="mb-8 text-xl font-mono text-accent">
+      <span class="typewriter" data-words='["Software Engineer", "Entrepreneur", "Tinkerer", "New Dad"]'></span>
+      <span class="typewriter-cursor"></span>
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <a href="/projects" class="inline-flex cursor-pointer items-center gap-2 rounded-sm border border-transparent bg-accent px-8 py-2 text-base font-semibold text-white transition-colors hover:bg-accent-hover">View Projects</a>
+      <a href="/about" class="inline-flex cursor-pointer items-center gap-2 rounded-sm border border-line px-8 py-2 text-base font-semibold text-fg transition-colors hover:border-accent hover:bg-card hover:text-accent">About Me</a>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+      <div class="rounded-md border border-line bg-card p-8 text-center transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/10">
+        <span class="block text-5xl font-bold tracking-[-0.03em]">10+</span>
+        <span class="mt-1 block text-sm text-muted">Years Building</span>
+      </div>
+      <div class="rounded-md border border-line bg-card p-8 text-center transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/10">
+        <span class="block text-5xl font-bold tracking-[-0.03em]">5+</span>
+        <span class="mt-1 block text-sm text-muted">Projects Shipped</span>
+      </div>
+      <div class="rounded-md border border-line bg-card p-8 text-center transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/10">
+        <span class="block text-5xl font-bold tracking-[-0.03em]">3</span>
+        <span class="mt-1 block text-sm text-muted">Cloud Certs</span>
+      </div>
+      <div class="rounded-md border border-line bg-card p-8 text-center transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/10">
+        <span class="block text-5xl font-bold tracking-[-0.03em]">2</span>
+        <span class="mt-1 block text-sm text-muted">AI Agents Certs</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <h2 class="mb-8 text-[2rem] font-bold tracking-[-0.02em]">Featured Projects</h2>
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <article class="overflow-hidden rounded-md border border-line bg-card p-8 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/10">
+        <h3 class="mb-2 text-xl font-semibold">
+          <a href="/projects/kids-story-generator" class="text-accent transition-colors hover:text-accent-hover hover:underline">Kids Story Generator</a>
+        </h3>
+        <p class="mb-4 text-muted">Agentic AI pipeline using Python/ADK/Gemini that generates illustrated children's stories.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">Python</span>
+          <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">ADK</span>
+          <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">Gemini</span>
+          <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">AI Agents</span>
+        </div>
+      </article>
+      <article class="overflow-hidden rounded-md border border-line bg-card p-8 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/10">
+        <h3 class="mb-2 text-xl font-semibold">
+          <a href="/projects/comfyui-gcp-storage" class="text-accent transition-colors hover:text-accent-hover hover:underline">ComfyUI GCP Storage Decouple</a>
+        </h3>
+        <p class="mb-4 text-muted">Custom ComfyUI node that decouples storage from compute — read/write cloud storage directly.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">Python</span>
+          <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">ComfyUI</span>
+          <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">GCP</span>
+          <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">Cloud Storage</span>
+        </div>
+      </article>
+    </div>
+    <div class="mt-8">
+      <a href="/projects" class="inline-flex cursor-pointer items-center gap-2 rounded-sm border border-line px-8 py-2 text-base font-semibold text-fg transition-colors hover:border-accent hover:bg-card hover:text-accent">All Projects &rarr;</a>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <h2 class="mb-8 text-[2rem] font-bold tracking-[-0.02em]">Latest Blog</h2>
+    <div class="flex flex-col gap-8">
+      <article class="overflow-hidden rounded-md border border-line bg-card p-8 transition duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/10">
+        <time class="mb-2 block text-sm text-muted" datetime="2026-09-30">September 30, 2026</time>
+        <h3 class="mb-2 text-xl font-semibold">
+          <a href="/blog/hello-world" class="text-accent transition-colors hover:text-accent-hover hover:underline">Hello, World — New Site, New Stack</a>
+        </h3>
+        <p class="mb-4 text-muted">Rebuilding prawegko.dev with Astro, deployed on S3/CloudFront with OIDC CI/CD.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">Meta</span>
+          <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">Astro</span>
+          <span class="inline-block rounded-full bg-accent/12 px-2.5 py-0.5 text-sm font-medium text-accent">AWS</span>
+        </div>
+      </article>
+    </div>
+    <div class="mt-8">
+      <a href="/blog" class="inline-flex cursor-pointer items-center gap-2 rounded-sm border border-line px-8 py-2 text-base font-semibold text-fg transition-colors hover:border-accent hover:bg-card hover:text-accent">All Posts &rarr;</a>
+    </div>
+  </section>
+</BaseLayout>

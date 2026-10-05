@@ -1,32 +1,24 @@
 ---
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import Head from '../../components/Head.astro';
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+
+const frontmatter = {
+  title: 'LifuKids Web',
+  description: 'Kids learning platform built with NextJS and TypeScript.',
+  subtitle: 'Kids learning platform built with NextJS and TypeScript — interactive content, gamification, and progress tracking.',
+  tags: ['NextJS', 'TypeScript', 'Web App', 'Education'],
+  github: 'https://github.com/koirpraw',
+};
 ---
-<!doctype html>
-<html lang="en" data-theme="dark">
-  <head><Head title="LifuKids Web — Praweg Koirala" description="Kids learning platform built with NextJS and TypeScript." ogType="article" /></head>
-  <body>
-    <Header /><main>
-      <article class="content-container prose project-detail">
-        <header class="project-header">
-          <h1>LifuKids Web</h1>
-          <p class="project-subtitle">Kids learning platform built with NextJS and TypeScript — interactive content, gamification, and progress tracking.</p>
-          <div class="tags-row"><span class="tag">NextJS</span><span class="tag">TypeScript</span><span class="tag">Web App</span><span class="tag">Education</span></div>
-          <div class="project-links"><a href="https://github.com/koirpraw" class="btn btn-outline" target="_blank" rel="noopener">Source &nearr;</a></div>
-        </header>
-        <h2>Overview</h2>
-        <p>Interactive learning platform for children. Features gamified educational content, progress tracking for parents, and engaging UI for young learners.</p>
-        <ul>
-          <li>Interactive lessons with multimedia</li>
-          <li>Points, badges, and level progression</li>
-          <li>Parent dashboard for progress tracking</li>
-          <li>Responsive design (desktop + tablet)</li>
-        </ul>
-        <h3>Tech Stack</h3>
-        <p>NextJS (Pages Router), TypeScript, Tailwind CSS, PostgreSQL (Prisma), NextAuth.js, Vercel.</p>
-      </article>
-    </main><Footer /></body>
-</html>
-<script>(function(){const h=document.documentElement;const s=localStorage.getItem('theme');if(s==='light'||s==='dark')h.setAttribute('data-theme',s);})();</script>
-<style scoped>.project-header{margin-bottom:var(--space-lg)}.project-header h1{font-size:var(--font-size-3xl);font-weight:800;letter-spacing:-0.02em}.project-subtitle{font-size:var(--font-size-lg);color:var(--color-text-muted);margin-top:var(--space-sm)}.tags-row{display:flex;flex-wrap:wrap;gap:var(--space-xs)}.project-links{display:flex;gap:var(--space-md);margin-top:var(--space-lg)}</style>
+
+<ProjectLayout frontmatter={frontmatter}>
+  <h2>Overview</h2>
+  <p>Interactive learning platform for children. Features gamified educational content, progress tracking for parents, and engaging UI for young learners.</p>
+  <ul>
+    <li>Interactive lessons with multimedia</li>
+    <li>Points, badges, and level progression</li>
+    <li>Parent dashboard for progress tracking</li>
+    <li>Responsive design (desktop + tablet)</li>
+  </ul>
+  <h3>Tech Stack</h3>
+  <p>NextJS (Pages Router), TypeScript, Tailwind CSS, PostgreSQL (Prisma), NextAuth.js, Vercel.</p>
+</ProjectLayout>
