@@ -1,40 +1,94 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Resume — Praweg Koirala" description="Professional resume of Praweg Koirala — Software Engineer & Entrepreneur.">
+<BaseLayout
+  title="Resume — Praweg Koirala"
+  description="Professional resume of Praweg Koirala — Software Engineer & Entrepreneur."
+>
   <div class="mb-8 print:hidden">
-    <button class="inline-flex cursor-pointer items-center gap-2 rounded-sm border border-transparent bg-accent px-8 py-2 text-base font-semibold text-white transition-colors hover:bg-accent-hover" onclick="window.print()">Print / Save as PDF</button>
+    <button
+      class="inline-flex cursor-pointer items-center gap-2 rounded-sm border border-transparent bg-accent px-8 py-2 text-base font-semibold text-white transition-colors hover:bg-accent-hover"
+      onclick="window.print()">Print / Save as PDF</button
+    >
   </div>
 
   <header class="mb-8 border-b-2 border-accent pb-4">
-    <h1 class="text-5xl font-extrabold tracking-[-0.02em] print:text-[24pt]">Praweg Koirala</h1>
+    <h1 class="text-5xl font-extrabold tracking-[-0.02em] print:text-[24pt]">
+      Praweg Koirala
+    </h1>
     <p class="mt-1 text-2xl text-muted">Software Engineer &amp; Entrepreneur</p>
     <div class="mt-2 flex flex-wrap gap-2 text-sm text-muted">
-      <span>Kathmandu, Nepal</span>
-      <span><a href="https://prawegko.dev" class="text-accent transition-colors hover:text-accent-hover hover:underline">prawegko.dev</a></span>
-      <span><a href="https://github.com/koirpraw" class="text-accent transition-colors hover:text-accent-hover hover:underline">github.com/koirpraw</a></span>
-      <span><a href="https://www.linkedin.com/in/prawegko" class="text-accent transition-colors hover:text-accent-hover hover:underline">linkedin.com/in/prawegko</a></span>
+      <span>Fort Collins, Colorado, USA</span>
+      <span
+        ><a
+          href="https://prawegko.dev"
+          class="text-accent transition-colors hover:text-accent-hover hover:underline"
+          >prawegko.dev</a
+        ></span
+      >
+      <span
+        ><a
+          href="https://github.com/koirpraw"
+          class="text-accent transition-colors hover:text-accent-hover hover:underline"
+          >github.com/koirpraw</a
+        ></span
+      >
+      <span
+        ><a
+          href="https://www.linkedin.com/in/prawegko"
+          class="text-accent transition-colors hover:text-accent-hover hover:underline"
+          >linkedin.com/in/prawegko</a
+        ></span
+      >
     </div>
   </header>
 
   <section class="my-16">
-    <h2 class="mb-4 border-b border-line pb-2 text-2xl font-bold tracking-[-0.01em]">Summary</h2>
-    <p>Software engineer and entrepreneur with a decade of experience building digital products. Cloud-certified (AWS), AI-focused, and hands-on with the full stack — from agentic pipelines to mobile apps. I turn product ideas into working systems.</p>
+    <h2
+      class="mb-4 border-b border-line pb-2 text-2xl font-bold tracking-[-0.01em]"
+    >
+      Summary
+    </h2>
+    <p>
+      Software engineer and entrepreneur with a decade of experience building
+      digital products. Cloud-certified (AWS), AI-focused, and hands-on with the
+      full stack — from agentic pipelines to mobile apps. I turn product ideas
+      into working systems.
+    </p>
   </section>
 
   <section class="my-16">
-    <h2 class="mb-4 border-b border-line pb-2 text-2xl font-bold tracking-[-0.01em]">Experience</h2>
+    <h2
+      class="mb-4 border-b border-line pb-2 text-2xl font-bold tracking-[-0.01em]"
+    >
+      Experience
+    </h2>
 
     <div class="mb-8">
       <h3 class="text-lg font-semibold">Founder</h3>
       <span class="font-semibold text-accent">PkoLabs LLC</span>
       <span class="mt-1 block text-sm text-muted">2024 — Present</span>
       <ul class="my-2 list-disc pl-8">
-        <li class="mb-1 text-muted">Building AI-powered products and cloud-native solutions</li>
-        <li class="mb-1 text-muted">Developing agentic pipelines with ADK and Gemini</li>
-        <li class="mb-1 text-muted">Creating ComfyUI custom nodes for cloud storage integration</li>
-        <li class="mb-1 text-muted">Designing and deploying cloud infrastructure with Terraform and AWS</li>
+        <li class="mb-1 text-muted">
+          Collaborating with a startup team to build multi-tiered architecture
+          for Industrial meter management systems.
+        </li>
+        <li class="mb-1 text-muted">
+          Building Data pipelines and integrations for trade finance.
+        </li>
+        <li class="mb-1 text-muted">
+          Developing agentic pipelines with ADK and Gemini
+        </li>
+        <li class="mb-1 text-muted">
+          Building AI-powered products and cloud-native solutions
+        </li>
+        <li class="mb-1 text-muted">
+          Designing and deploying cloud infrastructure with Terraform and AWS
+        </li>
+        <li class="mb-1 text-muted">
+          Creating ComfyUI custom nodes for cloud storage integration
+        </li>
       </ul>
     </div>
 
@@ -43,26 +97,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <span class="font-semibold text-accent">KDuo Production</span>
       <span class="mt-1 block text-sm text-muted">2012 — Present</span>
       <ul class="my-2 list-disc pl-8">
-        <li class="mb-1 text-muted">Co-founded a production house delivering digital products to local and international clients</li>
-        <li class="mb-1 text-muted">Leading technology strategy, architecture, and development</li>
-        <li class="mb-1 text-muted">Built web platforms, mobile apps, and cloud infrastructure</li>
+        <li class="mb-1 text-muted">
+          Co-founded a production house delivering digital products to local and
+          international clients
+        </li>
+        <li class="mb-1 text-muted">
+          Leading technology strategy, architecture, and development
+        </li>
+        <li class="mb-1 text-muted">
+          Built web platforms & mobile apps with cloud infrastructure.
+        </li>
       </ul>
     </div>
 
     <div class="mb-8">
-      <h3 class="text-lg font-semibold">Senior Engineer</h3>
-      <span class="font-semibold text-accent">ARUP Labs</span>
-      <span class="mt-1 block text-sm text-muted">2012 — 2020</span>
+      <h3 class="text-lg font-semibold">Medical Technologist</h3>
+      <span class="font-semibold text-accent">ARUP Laboratories</span>
+      <span class="mt-1 block text-sm text-muted">2010 — 2020</span>
       <ul class="my-2 list-disc pl-8">
-        <li class="mb-1 text-muted">Led biomedical engineering software projects</li>
-        <li class="mb-1 text-muted">Built healthcare technology solutions and laboratory information systems</li>
-        <li class="mb-1 text-muted">Developed software for medical equipment integration</li>
+        <li class="mb-1 text-muted">
+          Analytics and interpretation of genetic data.
+        </li>
+        <li class="mb-1 text-muted">
+          Working with laboratory information systems and medical equipment
+        </li>
+        <li class="mb-1 text-muted">
+          Applied genetic sequencing techniques and analysis.
+        </li>
       </ul>
     </div>
   </section>
 
   <section class="my-16">
-    <h2 class="mb-4 border-b border-line pb-2 text-2xl font-bold tracking-[-0.01em]">Certifications</h2>
+    <h2
+      class="mb-4 border-b border-line pb-2 text-2xl font-bold tracking-[-0.01em]"
+    >
+      Certifications
+    </h2>
     <ul class="list-disc pl-8">
       <li class="mb-1">AWS Solutions Architect — Associate (July 2026)</li>
       <li class="mb-1">AWS Cloud Practitioner (July 2026)</li>
@@ -71,13 +142,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <section class="my-16">
-    <h2 class="mb-4 border-b border-line pb-2 text-2xl font-bold tracking-[-0.01em]">Technical Skills</h2>
+    <h2
+      class="mb-4 border-b border-line pb-2 text-2xl font-bold tracking-[-0.01em]"
+    >
+      Technical Skills
+    </h2>
     <div class="grid gap-4">
-      <div class="border-b border-line py-2 last:border-b-0"><strong>Languages:</strong> Python, TypeScript, JavaScript, Dart, SQL</div>
-      <div class="border-b border-line py-2 last:border-b-0"><strong>Frameworks:</strong> NextJS, Astro, React, Flutter, Express, Node.js</div>
-      <div class="border-b border-line py-2 last:border-b-0"><strong>Cloud:</strong> AWS (S3, CloudFront, Route53, IAM, Terraform), GCP, Docker</div>
-      <div class="border-b border-line py-2 last:border-b-0"><strong>AI/ML:</strong> Agentic pipelines, ADK, Gemini API, ComfyUI, HuggingFace</div>
-      <div class="border-b border-line py-2 last:border-b-0"><strong>Tools:</strong> Git, GitHub Actions, Vercel, MongoDB, PostgreSQL</div>
+      <div class="border-b border-line py-2 last:border-b-0">
+        <strong>Languages:</strong> Python, TypeScript, JavaScript, Dart, SQL
+      </div>
+      <div class="border-b border-line py-2 last:border-b-0">
+        <strong>Frameworks:</strong> NextJS, Astro, React, Flutter, Express, Node.js
+      </div>
+      <div class="border-b border-line py-2 last:border-b-0">
+        <strong>Cloud:</strong> AWS (S3, CloudFront, Route53, IAM, Terraform), GCP,
+        Docker
+      </div>
+      <div class="border-b border-line py-2 last:border-b-0">
+        <strong>AI/ML:</strong> Agentic pipelines, ADK, Gemini API, ComfyUI, HuggingFace
+      </div>
+      <div class="border-b border-line py-2 last:border-b-0">
+        <strong>Tools:</strong> Git, GitHub Actions, Vercel, MongoDB, PostgreSQL
+      </div>
     </div>
   </section>
 </BaseLayout>

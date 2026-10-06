@@ -1,23 +1,40 @@
 ---
-import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
 
 const frontmatter = {
-  title: 'Kids Story Generator',
-  description: "Agentic AI pipeline that generates illustrated children's stories from simple prompts using Python, ADK, and Gemini.",
-  subtitle: "Agentic AI pipeline that generates illustrated children's stories from simple prompts using Python, ADK, and Gemini.",
-  tags: ['Python', 'ADK', 'Gemini', 'AI Agents'],
-  github: 'https://github.com/koirpraw',
+  title: "Kids Story Generator",
+  description:
+    "Agentic AI pipeline that generates illustrated children's stories from simple prompts using Python, ADK, and Gemini.",
+  subtitle:
+    "Agentic AI pipeline that generates illustrated children's stories from simple prompts using Python, ADK, and Gemini.",
+  tags: ["Python", "ADK", "Gemini", "AI Agents"],
+  github: "https://github.com/koirpraw/kids-story-generator",
 };
 ---
 
 <ProjectLayout frontmatter={frontmatter}>
   <h2>Overview</h2>
-  <p>The Kids Story Generator is an agentic AI pipeline that transforms simple prompts into fully-illustrated children's stories. It uses Google's Agent Development Kit (ADK) to orchestrate multiple specialized agents:</p>
+  <p>
+    The Kids Story Generator is an agentic AI pipeline that transforms simple
+    prompts into fully-illustrated children's stories. It uses Google's Agent
+    Development Kit (ADK) to orchestrate multiple specialized agents:
+  </p>
   <ul>
-    <li><strong>Story Weaver</strong> — Generates narrative arcs, characters, and plot</li>
-    <li><strong>Illustration Engine</strong> — Creates scene descriptions and prompts for image generation</li>
-    <li><strong>Formatting Agent</strong> — Composes the final output with proper layout and styling</li>
-    <li><strong>Review Agent</strong> — Ensures age-appropriate content and narrative coherence</li>
+    <li>
+      <strong>Story Weaver</strong> — Generates narrative arcs, characters, and plot
+    </li>
+    <li>
+      <strong>Illustration Engine</strong> — Creates scene descriptions and prompts
+      for image generation
+    </li>
+    <li>
+      <strong>Formatting Agent</strong> — Composes the final output with proper layout
+      and styling
+    </li>
+    <li>
+      <strong>Review Agent</strong> — Ensures age-appropriate content and narrative
+      coherence
+    </li>
   </ul>
 
   <h3>Architecture</h3>
@@ -38,11 +55,16 @@ Final Story (MDX + Images)</code></pre>
   <h3>Technical Details</h3>
   <ul>
     <li><strong>Framework:</strong> Google ADK (Agent Development Kit)</li>
-    <li><strong>LLM:</strong> Gemini 2.5 Pro (primary), Gemini 2.5 Flash (review agent)</li>
+    <li>
+      <strong>LLM:</strong> Gemini 2.5 Pro (primary), Gemini 2.5 Flash (review agent)
+    </li>
     <li><strong>Image Gen:</strong> Gemini-native image generation</li>
     <li><strong>Format:</strong> MDX output with embedded illustrations</li>
   </ul>
 
   <h3>Status</h3>
-  <p>Active development. Pipeline prototype is functional; working on UI layer and story preset system.</p>
+  <p>
+    Active development. Pipeline prototype is functional; working on UI layer
+    and story preset system.
+  </p>
 </ProjectLayout>
