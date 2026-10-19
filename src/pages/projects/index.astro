@@ -1,11 +1,23 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { breadcrumbNode, type JsonLdBlock } from '../../lib/structured-data';
+
+const structuredData: JsonLdBlock[] = [
+  {
+    id: 'ld-breadcrumb',
+    data: breadcrumbNode([
+      { name: 'Home', path: '/' },
+      { name: 'Projects', path: '/projects/' },
+    ]),
+  },
+];
 ---
 
 <BaseLayout
   title="Projects — Praweg Koirala"
   description="A selection of projects by Praweg Koirala — AI pipelines, cloud tools, mobile apps, and full-stack platforms."
   ogType="website"
+  structuredData={structuredData}
 >
   <h1 class="mb-2 text-5xl font-extrabold tracking-[-0.02em]">Projects</h1>
   <p class="mb-8 text-lg text-muted">Selected case studies — from agentic AI to full-stack apps.</p>

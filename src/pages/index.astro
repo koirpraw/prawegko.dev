@@ -1,26 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-// Override BaseLayout's default Person schema — this page adds knowsAbout.
-const jsonLd = `{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Praweg Koirala",
-  "url": "https://prawegko.dev",
-  "jobTitle": "Software Engineer & Entrepreneur",
-  "sameAs": [
-    "https://github.com/koirpraw",
-    "https://www.linkedin.com/in/prawegko"
-  ],
-  "knowsAbout": ["Software Engineering", "Cloud Computing", "Artificial Intelligence", "Product Development"]
-}`;
 ---
 
 <BaseLayout
   title="Praweg Koirala — Software Engineer & Entrepreneur"
   description="Entrepreneur who codes — building AI-powered products on the cloud. Explore projects, blog, and more."
   ogType="website"
-  jsonLd={jsonLd}
 >
   <section class="py-16 text-center md:py-24">
     <p class="mb-4 text-lg text-muted">Hi, I'm</p>

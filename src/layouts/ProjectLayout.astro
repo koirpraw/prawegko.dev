@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import { breadcrumbNode, slugFromPath, type JsonLdBlock } from '../lib/structured-data';
 
 interface Props {
   frontmatter: {
@@ -15,12 +16,27 @@ interface Props {
 }
 
 const { frontmatter } = Astro.props;
+
+const title = frontmatter.title || 'Project';
+
+const structuredData: JsonLdBlock[] = [
+  {
+    id: 'ld-breadcrumb',
+    data: breadcrumbNode([
+      { name: 'Home', path: '/' },
+      { name: 'Projects', path: '/projects/' },
+      { name: title, path: Astro.url.pathname },
+    ]),
+  },
+];
 ---
 
 <BaseLayout
-  title={frontmatter.title || 'Project'}
+  title={title}
   description={frontmatter.description || ''}
   ogType="article"
+  structuredData={structuredData}
+  ogSlug={slugFromPath(Astro.url.pathname)}
 >
   <article class="prose">
     <header class="mb-8">

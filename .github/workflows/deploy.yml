@@ -19,6 +19,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Full history: the sitemap derives each URL's <lastmod> from the last commit
+          # that touched its source file. A shallow clone would report this commit's date.
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -41,6 +45,15 @@ jobs:
       - name: Sync to S3
         run: |
           aws s3 sync dist/ s3://prawegko.dev --delete
+
+      # `aws s3 sync` guesses the MIME type from the extension and stores .xml as
+      # application/xml. Re-uploading the feed explicitly is what makes it
+      # application/rss+xml, and it runs after the sync so it always wins.
+      - name: Serve the feed as application/rss+xml
+        run: |
+          aws s3 cp dist/rss.xml s3://prawegko.dev/rss.xml \
+            --content-type "application/rss+xml" \
+            --no-cli-pager
 
       - name: Invalidate CloudFront
         run: |

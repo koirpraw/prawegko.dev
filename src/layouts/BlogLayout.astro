@@ -1,22 +1,62 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import {
+  blogPostingNode,
+  breadcrumbNode,
+  ogImage,
+  slugFromPath,
+  type JsonLdBlock,
+} from '../lib/structured-data';
 
 interface Props {
   frontmatter: {
     title: string;
     description?: string;
     tags?: string[];
-    date?: Date;
+    /** Publication date — required: it is the BlogPosting `datePublished`. */
+    date: Date;
+    /** Last revision; the BlogPosting `dateModified` falls back to `date` when absent. */
+    updated?: Date;
   };
 }
 
 const { frontmatter } = Astro.props;
+
+const title = frontmatter.title || 'Blog Post';
+const description = frontmatter.description || '';
+const slug = slugFromPath(Astro.url.pathname);
+const card = ogImage(slug, title);
+
+const structuredData: JsonLdBlock[] = [
+  {
+    id: 'ld-blogposting',
+    data: blogPostingNode({
+      title,
+      description,
+      path: Astro.url.pathname,
+      datePublished: frontmatter.date,
+      dateModified: frontmatter.updated,
+      tags: frontmatter.tags,
+      image: card.url,
+    }),
+  },
+  {
+    id: 'ld-breadcrumb',
+    data: breadcrumbNode([
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog/' },
+      { name: title, path: Astro.url.pathname },
+    ]),
+  },
+];
 ---
 
 <BaseLayout
-  title={frontmatter.title || 'Blog Post'}
-  description={frontmatter.description || ''}
+  title={title}
+  description={description}
   ogType="article"
+  structuredData={structuredData}
+  ogSlug={slug}
 >
   <article class="prose">
     <header class="mb-8">

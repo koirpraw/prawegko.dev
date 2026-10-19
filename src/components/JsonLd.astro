@@ -1,0 +1,17 @@
+---
+import type { JsonLdNode } from '../lib/structured-data';
+
+interface Props {
+  /** Stable id so the block is assertable in the served HTML (ld-person, ld-blogposting, …). */
+  id: string;
+  data: JsonLdNode;
+}
+
+const { id, data } = Astro.props;
+
+// `<` is escaped as \u003c so a title containing "</script>" can never close the tag
+// early. That is still valid JSON, so every block stays JSON.parse-able.
+const json = JSON.stringify(data).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" id={id} set:html={json} />
