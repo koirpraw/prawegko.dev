@@ -56,6 +56,18 @@ const card = ogImage(ogSlug, title);
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
+
+<!-- Google tag (gtag.js) — GA4 property 559701532. Direct gtag.js, deliberately NOT a GTM
+     container (Praweg's decision 2026-10-19). `is:inline` keeps both snippets verbatim
+     in the served head: Astro would otherwise hoist/bundle them. -->
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-D8R5CVHEJC"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D8R5CVHEJC');
+</script>
+
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/favicon.svg" />

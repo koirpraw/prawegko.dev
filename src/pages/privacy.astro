@@ -1,0 +1,188 @@
+---
+// Privacy policy — real copy for THIS site. Every claim below is true of prawegko.dev as
+// built: the only third-party script is gtag.js (GA4 G-D8R5CVHEJC, see Head.astro), the
+// only first-party storage is the `theme` key in localStorage (Head.astro + the Header
+// toggle), there are no ads, and the contact form posts to Web3Forms.
+//
+// Deliberately NOT stated (unsourced — do not invent): a governing jurisdiction, a company
+// registration number, a postal address. The site is attributed to Praweg Koirala as an
+// individual. See the step log for the one line the PM may still want to source.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Privacy policy — Praweg Koirala';
+const description =
+  'How prawegko.dev handles data: Google Analytics 4, the theme preference stored in your browser, and no advertising.';
+const effectiveDate = 'October 19, 2026';
+---
+
+<BaseLayout title={title} description={description}>
+  <section>
+    <p class="text-sm font-semibold tracking-[0.14em] text-muted uppercase">Legal</p>
+    <h1 class="mt-4 mb-2 text-5xl font-extrabold tracking-[-0.02em]">Privacy policy</h1>
+    <p class="mt-4 text-sm text-muted">Effective date: {effectiveDate}</p>
+
+    <div class="prose mt-12 max-w-3xl">
+      <p>
+        This page explains what prawegko.dev does with data. It is short because the site
+        does very little: it is a static personal site — no accounts, no e-commerce, no
+        advertising, and no database behind it.
+      </p>
+
+      <h2>In short</h2>
+      <ul>
+        <li>
+          I use <strong>Google Analytics 4</strong> to see which pages get read. It sets
+          first-party cookies and reports are processed by Google.
+        </li>
+        <li>
+          Your <strong>dark/light theme choice</strong> is saved in your browser's
+          localStorage. It never leaves your device.
+        </li>
+        <li>There are <strong>no ads and no advertising cookies</strong> on this site.</li>
+        <li>No personal information is sold, rented, or shared for marketing.</li>
+        <li>
+          You can opt out of Google Analytics with Google's
+          <a
+            href="https://tools.google.com/dlpage/gaoptout"
+            target="_blank"
+            rel="noopener noreferrer">opt-out browser add-on</a
+          >.
+        </li>
+      </ul>
+
+      <h2>Who runs this site</h2>
+      <p>
+        prawegko.dev is the personal site of <strong>Praweg Koirala</strong>, an individual.
+        It is a portfolio and blog — it is not a company website, there are no user accounts,
+        and nothing is bought or sold here.
+      </p>
+
+      <h2>Analytics</h2>
+      <p>
+        I use <strong>Google Analytics 4</strong> (measurement ID <code>G-D8R5CVHEJC</code>)
+        to understand how the site is used, so I know which writing and projects are worth
+        keeping up. It collects:
+      </p>
+      <ul>
+        <li>approximate location (derived from your IP address);</li>
+        <li>the device, operating system, and browser you are using;</li>
+        <li>the pages you view and how long you spend on them;</li>
+        <li>how you arrived — the search, link, or site that referred you;</li>
+        <li>basic session information, such as whether a visitor is new or returning.</li>
+      </ul>
+      <p>
+        Google Analytics sets <strong>first-party cookies</strong> on prawegko.dev to tell
+        one visit from another. The measurements are recorded and processed by
+        <strong>Google</strong>, not by me: I only ever see aggregated reports in the Google
+        Analytics interface, and those reports do not show me your IP address or anything
+        that identifies you by name.
+      </p>
+      <p>
+        The analytics script is loaded from Google's servers
+        (<code>googletagmanager.com</code>), so Google receives your request when it loads.
+        See
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
+          >Google's privacy policy</a
+        >
+        and
+        <a
+          href="https://policies.google.com/technologies/partner-sites"
+          target="_blank"
+          rel="noopener noreferrer">how Google uses information from sites that use its services</a
+        >.
+      </p>
+
+      <h2>Cookies and local storage</h2>
+      <p>
+        This site itself does not set cookies. Two things are stored on your device:
+      </p>
+      <ul>
+        <li>
+          <strong>Theme preference.</strong> If you switch between dark and light mode, your
+          choice is saved in your browser's <code>localStorage</code> under the key
+          <code>theme</code>. It stays on your device, is never sent to me, and is not shared
+          with anyone.
+        </li>
+        <li>
+          <strong>Analytics cookies.</strong> The Google Analytics cookies described above
+          are the only cookies this site causes to be set.
+        </li>
+      </ul>
+
+      <h2>No advertising</h2>
+      <p>
+        There are <strong>no ads on this site</strong> and no advertising or cross-site
+        profiling cookies. No ad networks, retargeting pixels, or social media trackers are
+        embedded here. I do not sell, rent, or share personal information with third parties
+        for marketing purposes.
+      </p>
+
+      <h2>Contact messages</h2>
+      <p>
+        The <a href="/contact/">contact page</a> has a form. When it is submitted, the name,
+        email address, and message you type are sent to
+        <a href="https://web3forms.com" target="_blank" rel="noopener noreferrer">Web3Forms</a
+        >, a third-party form service that delivers the message to my email inbox. Their
+        privacy practices govern that transfer. Nothing from the form is stored on this
+        site — it is a static site with no database — and I use what you send only to reply
+        to you. You can also reach me directly by email at
+        <a href="mailto:prawegko@gmail.com">prawegko@gmail.com</a>.
+      </p>
+
+      <h2>Hosting</h2>
+      <p>
+        The site is served as static files from Amazon S3 through Amazon CloudFront. Like any
+        web host, that infrastructure receives the request your browser makes — including
+        your IP address, the file requested, and your browser's user-agent string — in order
+        to deliver the page and protect the service from abuse.
+      </p>
+
+      <h2>Your choices</h2>
+      <ul>
+        <li>
+          <strong>Opt out of analytics.</strong> Google's
+          <a
+            href="https://tools.google.com/dlpage/gaoptout"
+            target="_blank"
+            rel="noopener noreferrer">Analytics opt-out browser add-on</a
+          >
+          stops Google Analytics from measuring your visits on this and other sites.
+        </li>
+        <li>
+          <strong>Block the script.</strong> A content blocker, or blocking
+          <code>googletagmanager.com</code>, prevents the analytics script from loading at
+          all. The site works exactly the same either way.
+        </li>
+        <li>
+          <strong>Clear what's stored.</strong> Removing prawegko.dev from your browser's site
+          data clears both the theme preference and any analytics cookies.
+        </li>
+        <li>
+          <strong>Ask me something.</strong> If you want to know what analytics data exists
+          that relates to a visit you made, or want a message you sent deleted, email me and I
+          will deal with it.
+        </li>
+      </ul>
+
+      <h2>Third-party links</h2>
+      <p>
+        Pages here link out to other services — for example GitHub, LinkedIn, and the
+        projects described on the site. Once you follow one of those links, their privacy
+        policies apply, not this one.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        If this policy changes in a way that matters — a new analytics or third-party service,
+        for instance — I will update this page and the effective date above at the same time.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions or requests about privacy on this site:
+        <a href="mailto:prawegko@gmail.com">prawegko@gmail.com</a>, or use the
+        <a href="/contact/">contact page</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

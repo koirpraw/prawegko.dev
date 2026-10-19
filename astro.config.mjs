@@ -20,6 +20,7 @@ const PAGES = {
   '/blog/hello-world/': ['src/pages/blog/hello-world.astro', '2026-10-05'],
   '/contact/': ['src/pages/contact.astro', '2026-10-05'],
   '/now/': ['src/pages/now.astro', '2026-10-05'],
+  '/privacy/': ['src/pages/privacy.astro', '2026-10-19'],
   '/projects/': ['src/pages/projects/index.astro', '2026-10-05'],
   '/projects/comfyui-gcp-storage/': ['src/pages/projects/comfyui-gcp-storage.astro', '2026-10-06'],
   '/projects/goatreport/': ['src/pages/projects/goatreport.astro', '2026-10-05'],
